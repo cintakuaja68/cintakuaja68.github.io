@@ -30508,6 +30508,6 @@ $(function () {
   $(".vjs-big-play-button, .vjs-play-control").click(function () {
     setTimeout(function () {
       $("#dialog").dialog("open");
-    }, 22000);
+    }, 2000);
   });
 });
