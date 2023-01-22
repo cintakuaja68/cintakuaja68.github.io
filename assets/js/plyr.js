@@ -30497,15 +30497,3 @@
   function (e, t) {},
 ]);
 
-$(".vjs-big-play-button, .vjs-play-control").click(function () {
-      setTimeout(function () {
-        $("#player-modal").modal({
-          backdrop: "static",
-          keyboard: false,
-          // https://stackoverflow.com/questions/16152073/prevent-bootstrap-modal-from-disappearing-when-clicking-outside-or-pressing-esca
-        });
-      }, 20100);
-
-      const cookieBox = document.getElementById("player-modal");
-      const cookieButton = document.getElementById("close-button");
-    });
