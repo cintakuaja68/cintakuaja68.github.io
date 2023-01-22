@@ -509,8 +509,8 @@ pre code {
     max-width: 960px;
   }
   .embed-responsive-16by9 {
-    padding-right: 25px;
-    padding-left: 25px;
+    padding-right: 25px !important;
+    padding-left: 25px !important;
   }
 }
 @media (min-width: 1200px) {
