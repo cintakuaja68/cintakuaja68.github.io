@@ -508,6 +508,10 @@ pre code {
   .container {
     max-width: 960px;
   }
+  .embed-responsive-16by9 {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
 }
 @media (min-width: 1200px) {
   .container {
