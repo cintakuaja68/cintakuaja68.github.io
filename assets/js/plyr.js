@@ -30497,17 +30497,15 @@
   function (e, t) {},
 ]);
 
-$(function () {
-  $("#dialog").dialog({
-    modal: true,
-    autoOpen: false,
-    title: "jQuery Dialog",
-    width: 300,
-    height: 150,
-  });
-  $(".vjs-big-play-button, .vjs-play-control").click(function () {
-    setTimeout(function () {
-      $("#dialog").dialog("open");
-    }, 2000);
-  });
-});
+$(".vjs-big-play-button, .vjs-play-control").click(function () {
+      setTimeout(function () {
+        $("#player-modal").modal({
+          backdrop: "static",
+          keyboard: false,
+          // https://stackoverflow.com/questions/16152073/prevent-bootstrap-modal-from-disappearing-when-clicking-outside-or-pressing-esca
+        });
+      }, 20100);
+
+      const cookieBox = document.getElementById("player-modal");
+      const cookieButton = document.getElementById("close-button");
+    });
