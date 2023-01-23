@@ -2119,7 +2119,9 @@ class Moovie {
         .getElementById("poster_center_" + randomID)
         .insertAdjacentHTML(
           "afterbegin",
-          "<button class='poster_button button toggle'  type='button' ><img src='" +
+          "<button class='poster_button player__button toggle'  type='button' id='tooglebutton_" +
+            randomID +
+            "'><img src='" +
             icons.path +
             "play.svg' style='width: 24px; position: relative; left: 3px;'></button>"
         );
