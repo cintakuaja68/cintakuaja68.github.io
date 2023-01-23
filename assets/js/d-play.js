@@ -48,7 +48,7 @@ class Moovie {
         },
       },
       icons: {
-        path: "https://cintakuaja68.github.io/assets/icons/",
+        path: "./icons/",
       },
       customEvents: [
         {
@@ -2119,13 +2119,13 @@ class Moovie {
         .getElementById("poster_center_" + randomID)
         .insertAdjacentHTML(
           "afterbegin",
-          "<div class='poster_button'><img src='" +
+          "<div class='poster_button toggle'><img src='" +
             icons.path +
             "play.svg' style='width: 24px; position: relative; left: 3px;'></div>"
         );
       if (vposter != null) {
         moovie_el_poster.style.backgroundImage = "url(" + vposter + ")";
-        moovie_el_poster.style.backgroundSize = "100%";
+        moovie_el_poster.style.backgroundSize = "covers";
         moovie_el_poster.style.backgroundPositionY = "center";
       }
 
