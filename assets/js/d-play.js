@@ -48,7 +48,7 @@ class Moovie {
         },
       },
       icons: {
-        path: "./icons/",
+        path: "https://cintakuaja68.github.io/assets/icons/",
       },
       customEvents: [
         {
