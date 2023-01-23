@@ -2119,9 +2119,9 @@ class Moovie {
         .getElementById("poster_center_" + randomID)
         .insertAdjacentHTML(
           "afterbegin",
-          "<div class='poster_button button toggle'  type='button' ><img src='" +
+          "<button class='poster_button button toggle'  type='button' ><img src='" +
             icons.path +
-            "play.svg' style='width: 24px; position: relative; left: 3px;'></div>"
+            "play.svg' style='width: 24px; position: relative; left: 3px;'></button>"
         );
       if (vposter != null) {
         moovie_el_poster.style.backgroundImage = "url(" + vposter + ")";
