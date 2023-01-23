@@ -48,7 +48,7 @@ class Moovie {
         },
       },
       icons: {
-        path: "./icons/",
+        path: "https://cintakuaja68.github.io/assets/icons/",
       },
       customEvents: [
         {
@@ -2111,7 +2111,7 @@ class Moovie {
       );
       moovie_el_poster.insertAdjacentHTML(
         "afterbegin",
-        "<div class='poster_center' id='poster_center_" +
+        "<div class='poster_center ' type='button' id='poster_center_" +
           randomID +
           "' style=''></div>"
       );
@@ -2119,13 +2119,13 @@ class Moovie {
         .getElementById("poster_center_" + randomID)
         .insertAdjacentHTML(
           "afterbegin",
-          "<div class='poster_button toggle'><img src='" +
+          "<div class='poster_button button toggle'  type='button' ><img src='" +
             icons.path +
             "play.svg' style='width: 24px; position: relative; left: 3px;'></div>"
         );
       if (vposter != null) {
         moovie_el_poster.style.backgroundImage = "url(" + vposter + ")";
-        moovie_el_poster.style.backgroundSize = "covers";
+        moovie_el_poster.style.backgroundSize = "cover";
         moovie_el_poster.style.backgroundPositionY = "center";
       }
 
