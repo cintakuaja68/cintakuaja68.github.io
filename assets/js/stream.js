@@ -2505,7 +2505,7 @@
           enterFullscreen: "Enter fullscreen",
           exitFullscreen: "Exit fullscreen",
           frameTitle: "Player for {title}",
-          captions: "Captions",
+          captions: "Quality",
           settings: "Settings",
           menuBack: "Go back to previous menu",
           speed: "Speed",
@@ -2516,7 +2516,7 @@
           end: "End",
           all: "All",
           reset: "Reset",
-          disabled: "Disabled",
+          disabled: "Auto",
           enabled: "Enabled",
           advertisement: "Ad",
           qualityBadge: {
