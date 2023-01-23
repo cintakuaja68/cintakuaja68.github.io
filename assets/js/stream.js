@@ -2446,7 +2446,7 @@
         seekTime: 10,
         volume: 1,
         muted: !1,
-        duration: null,
+        duration: duraTion,
         displayDuration: !0,
         invertTime: !0,
         toggleInvert: !0,
