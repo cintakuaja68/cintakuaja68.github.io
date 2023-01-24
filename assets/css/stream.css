@@ -192,6 +192,10 @@ a.plyr__control::before {
 .plyr__control--overlaid:focus,
 .plyr__control--overlaid:hover {
   background: #00b3ff;
+  border: 4px solid #ffff00c4;
+  box-shadow: 0 0 20px 4px #00ffe7;
+  padding: 24px;
+  color: yellow !important;
 }
 .plyr--playing .plyr__control--overlaid {
   opacity: 0;
@@ -616,6 +620,9 @@ a.plyr__control::before {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(35, 41, 47, 0.2),
     0 0 0 3px rgba(0, 0, 0, 0.1);
 }
+.plyr__poster:hover {
+  opacity: 0.5;
+}
 .plyr__poster {
   background-color: #000;
   background-position: 50% 50%;
@@ -870,6 +877,10 @@ a.plyr__control::before {
 @media (min-width: 768px) {
   .plyr__volume {
     max-width: 110px;
+  }
+  .video-container {
+    padding-left: 9%;
+    padding-right: 9%;
   }
 }
 .plyr--is-ios .plyr__volume {
