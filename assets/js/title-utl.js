@@ -15,7 +15,7 @@ function getQueryStringParam(param) {
 
 if (getQueryStringParam("episode")) {
   var episode = getQueryStringParam("episode");
-  document.getElementById("episode-title").innerHTML = " episode " + episode + "";
+  document.getElementById("episode-title").innerHTML = " episode " + episode + " | Full Episode";
 } else {
   document.getElementById("episode-title").innerHTML = "";
 }
