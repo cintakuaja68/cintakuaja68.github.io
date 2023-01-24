@@ -874,15 +874,20 @@ a.plyr__control::before {
     max-width: 90px;
   }
 }
+
+@media (min-width: 600px) {
+  .video-container {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
 @media (min-width: 768px) {
   .plyr__volume {
     max-width: 110px;
   }
-  .video-container {
-    padding-left: 9%;
-    padding-right: 9%;
-  }
 }
+
 .plyr--is-ios .plyr__volume {
   display: none !important;
 }
