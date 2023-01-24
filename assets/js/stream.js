@@ -3503,17 +3503,17 @@
                   ),
                   t.supported.ui && t.config.clickToPlay && !t.isAudio)
                 ) {
-                  var i = Z.call(t, ".".concat(t.config.classNames.video));
-                  if (!N.element(i)) return;
-                  O.call(t, n.container, "click", function (a) {
-                    ([n.container, i].includes(a.target) ||
-                      i.contains(a.target)) &&
-                      ((t.touch && t.config.hideControls) ||
-                        (t.ended
-                          ? (e.proxy(a, t.restart, "restart"),
-                            e.proxy(a, t.play, "play"))
-                          : e.proxy(a, t.togglePlay, "play")));
-                  });
+                  // var i = Z.call(t, ".".concat(t.config.classNames.video));
+                  // if (!N.element(i)) return;
+                  // O.call(t, n.container, "click", function (a) {
+                  //   ([n.container, i].includes(a.target) ||
+                  //     i.contains(a.target)) &&
+                  //     ((t.touch && t.config.hideControls) ||
+                  //       (t.ended
+                  //         ? (e.proxy(a, t.restart, "restart"),
+                  //           e.proxy(a, t.play, "play"))
+                  //         : e.proxy(a, t.togglePlay, "play")));
+                  // });
                 }
                 t.supported.ui &&
                   t.config.disableContextMenu &&
