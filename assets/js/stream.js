@@ -2483,7 +2483,7 @@
           "airplay",
           "fullscreen",
         ],
-        settings: ["captions", "quality", "speed"],
+        settings: ["speed", "quality", "captions"],
         i18n: {
           restart: "Restart",
           rewind: "Rewind {seektime}s",
@@ -2510,7 +2510,7 @@
           menuBack: "Go back to previous menu",
           speed: "Speed",
           normal: "Normal",
-          quality: "Quality",
+          quality: "Subtitles/CC",
           loop: "Loop",
           start: "Start",
           end: "End",
