@@ -80,20 +80,20 @@ a.nodecor:hover,a.nodecor:focus{text-decoration:none;}
 #search-modal .modal-content{background-color:#222;border:1px solid #333;}
 #search-modal .search-option,#search-modal .search-box{padding:10px 15px;}
 #search-modal .search-option{background-color:#111;}
-#player-modal .modal-header{font-family: Oswald,Sans-serif;font-size: 24px; /* text-transform: uppercase; */ position: absolute;width: 100%;z-index: 1;background-color: rgba(0,0,0,.8);color: #fff;text-shadow: 0px 0px 13px #003eff;}
+#player-modal .modal-header{font-family: Oswald,Sans-serif;font-size: 24px; /* text-transform: uppercase; */ position: absolute;width: 100%;z-index: 1;background-color:rgb(0 4 14 / 92%);color: #fff;text-shadow: 0px 0px 13px #003eff;}
 #player-modal .modal-body{padding:0;overflow:hidden;position:relative;}
 #player-modal .modal-body .img-cover{background:rgb(0 0 0 / 0%) url(https://netmoviestvshows.github.io/link-alternatif.github.io/Media-Player/overlay.png);}
 #player-modal .modal-body .offerlay{position:absolute;width:100%;height:100%;top:0;left:0;background:url(https://netmoviestvshows.github.io/link-alternatif.github.io/Media-Player/offerlay.png) right center no-repeat;}
-#player-modal .modal-body .modal-text,#player-modal .modal-body .modal-ft{color: #d7d7d7;position: absolute;line-height: 20px;bottom: 81px;padding: 10px 15px;width: 50%;background-color: rgba(0,0,0,.7);font-size: larger;font-family: Oswald,Sans-serif;text-transform: uppercase;}
-#player-modal .modal-body .modal-text{opacity:1;left:0;}
+#player-modal .modal-body .modal-text,#player-modal .modal-body .modal-ft{color: #d7d7d7;position: absolute;line-height: 20px;bottom: 81px;padding: 10px 15px;width: 50%;background-color: rgb(0 8 28 / 67%);font-size: larger;font-family: Oswald,Sans-serif;text-transform: uppercase;}
+#player-modal .modal-body .modal-text{opacity:1;left:0;bottom: 75px;}
 #player-modal .modal-body .modal-ft{opacity:0;left:-15px;}
 #player-modal .modal-body .modal-ft ul{list-style:none;}
 #player-modal .modal-body .modal-ft ul li .icon{color:#fff;margin-right:10px;}
 #player-modal .modal-body .modal-text strong{color:#00a1ff;}
-#player-modal .modal-footer{position:absolute;width:100%;bottom:0;background-color:rgba(0,0,0,.8);}
+#player-modal .modal-footer{position:absolute;width:100%;bottom:0;background-color:rgb(0 4 14 / 92%);}
 #player-modal .modal-content:hover .modal-body .offerlay{background-color:rgba(0,0,0,.5);}
 #player-modal .modal-content:hover .modal-body .modal-text{left:-15px;opacity:0;}
-#player-modal .modal-content:hover .modal-body .modal-ft{left:0;opacity:1;}
+#player-modal .modal-content:hover .modal-body .modal-ft{left:0;opacity:1;bottom: 57px;}
 #player-modal .btn-bg{height:50px;}
 #player-modal .btn-bg:before{width:37px;height:35px;}
 .form-control{box-shadow:none;-webkit-box-shadow:none;background:#000;color:#ccc;border:0;}
@@ -353,7 +353,7 @@ h1.entry-title, h1.page-title {
     #player{padding:0;margin-top:3px;}
     #player .container,#home .container{padding-left:0;padding-right:0;}
     #player-modal .modal-header,#player-modal .modal-footer{position:relative;}
-    #player-modal .modal-body .modal-text,#player-modal .modal-body .modal-ft{width:100%;bottom:0;}
+    #player-modal .modal-body .modal-text,#player-modal .modal-body .modal-ft{width:100%;bottom:-26px;}
     #ext-download .ext-row .ext-title{padding-right:100px;}
     .site-links,.site-credit{text-align:center;}
     .site-links li:first-child a{padding-left:10px;}
