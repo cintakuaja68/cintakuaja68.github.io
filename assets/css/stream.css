@@ -1285,3 +1285,51 @@ a.plyr__control::before {
 .plyr [hidden] {
   display: none !important;
 }
+
+
+  /* .plyr__control--overlaid {
+   
+    background: #0091ff;
+    
+  } */
+
+  .plyr__control--overlaid:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: #00e1ff75;
+    border-radius: 50%;
+    animation: pulse-border 2200ms ease-out infinite;
+  }
+
+  .plyr__control--overlaid:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 80px;
+    height: 80px;
+    /* background: #fa183d; */
+    border-radius: 50%;
+    transition: all 200ms;
+  }
+
+  @keyframes pulse-border {
+    0% {
+      transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+      opacity: 0;
+    }
+  }
