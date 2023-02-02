@@ -337,7 +337,8 @@ h1.entry-title, h1.page-title {
     opacity:0;
 }
 @media (max-width: 479px) {
-    .btn-offer{display:block;width:100%;margin-bottom:5px;padding-left:20px;}
+  .btn-offer{display:block;width:100%;margin-bottom:5px;padding-left:20px;}
+  .stream {margin-left: -20px;margin-right: -20px;}
 }
 @media (max-width: 767px) {
     body{padding-top:50px;}
