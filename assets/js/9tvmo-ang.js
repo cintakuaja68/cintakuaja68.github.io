@@ -48,8 +48,10 @@ app.controller(
       $scope.runtime = response.data.runtime;
       $scope.uri = response.data.backdrop_path;
       $scope.media =
-        response.data.media_type || (response.data.name ? "tv" : "movie");
-
+        response.data.media_type || (response.data.name ? "TV" : "Movie");
+      $scope.fullmt =
+        response.data.media_type ||
+        (response.data.name ? "Full Episode" : "Full Movie");
       $scope.logonet =
         response.data.networks && response.data.networks.length > 0
           ? response.data.networks[0].logo_path
