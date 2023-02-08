@@ -18,6 +18,10 @@ app.controller(
 
     $http.get(apiUrl).then(function (response) {
       $scope.details = response.data;
+      console.log($scope.details);
+      console.log($scope.seasons);
+      $scope.id = response.data.id;
+      $scope.imdb_id = response.data.homepage;
       $scope.title = response.data.title || response.data.name;
       $scope.titleori =
         response.data.original_title || response.data.original_name;
