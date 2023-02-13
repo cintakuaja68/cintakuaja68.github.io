@@ -112,7 +112,7 @@ article.media:hover{background-color:#222;}
 .poster-container img{max-width:100%;}
 .img-container{width:100%;padding-bottom:150%;position:relative}
 .img-container img{position:absolute;top:0;bottom:0;left:0;right:0;min-height:100%}
-.img-posters{height: height: 245px !important;}
+.img-posters{height: 245px;}
 span.star{position:absolute;top:0;left:3px;color:#00a2f7;font-size:24px;display:inline-block;text-align:center;width:20px}
 span.rate{color:#fff;position:absolute;top:8px;left:0;width:22px;font-size:10px;font-weight:700;display:block;text-align:center;text-shadow:1px 1px #000;}
 .page-header,.entry-header{margin:0;border:0;}
