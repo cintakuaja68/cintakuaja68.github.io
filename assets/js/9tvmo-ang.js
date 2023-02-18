@@ -7,6 +7,7 @@ app.controller(
     var backdropUrl = "https://image.tmdb.org/t/p/w1280";
     var posterUrl = "https://image.tmdb.org/t/p/w300";
     var fileUrl = "https://image.tmdb.org/t/p/w500";
+    var noimage = "https://cintakuaja68.github.io/assets/img/no-backdrop.png";
     const apiUrl =
       "https://api.themoviedb.org/3/" +
       ENTITY_TYPE +
@@ -127,6 +128,7 @@ app.controller(
       function successCallback(response) {
         $scope.filebackdrop = response.data.backdrops;
         $scope.fileposter = response.data.posters;
+        $scope.noimage = noimage;
       },
       function errorCallback(response) {
         console.log("Error: " + response.data);
