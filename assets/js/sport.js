@@ -63,7 +63,7 @@ function offer() {
     } else {
       window.location.href = load.dataset.offer;
     }
-  }, 20000);
+  }, 25000);
 }
 
 /* Waktu */
