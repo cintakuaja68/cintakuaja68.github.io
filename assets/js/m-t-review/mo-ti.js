@@ -1,376 +1,331 @@
-/* TMDB STYLE */
-.cast-details {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 98%;
-  /* background-color: rgba(0, 0, 0, 0.8); */
-  color: #fff;
-  padding: 0;
-  font-size: 12px;
-}
+var app = angular.module("app", []);
 
-p.artist-name {
-  margin: 0;
-  background: #00000091;
-}
+app.controller("DetailsController", function ($scope, $http, $filter) {
+  var API_KEY = "50479b124e0923c371395234e579d901";
+  var backdropUrl = "https://image.tmdb.org/t/p/w1280";
+  var posterUrl = "https://image.tmdb.org/t/p/w300";
+  var fileUrl = "https://image.tmdb.org/t/p/w500";
+  var noimage = "https://cintakuaja68.github.io/assets/img/no-backdrop.png";
+  var noposter =
+    "https://cintakuaja68.github.io/assets/img/no profil image.jpg";
 
-.artist-job {
-  margin: 0;
-  background: #007bff91;
-}
-.cast-item {
-  flex: 0 0 calc(20% - 35px);
-  position: relative;
-  display: inline-block;
-  margin: 4px;
-  background: #357a4b47;
-  text-align: center;
-}
+  const apiUrl =
+    "https://api.themoviedb.org/3/" +
+    ENTITY_TYPE +
+    "/" +
+    ENTITY_ID +
+    "?api_key=" +
+    API_KEY +
+    "&language=en-US&append_to_response=alternative_titles,changes,credits,images,keywords,lists,releases,reviews,similar,translations,videos,seasons,external_ids";
 
-.cast-item img {
-  display: block;
-  max-width: 124px;
-  height: auto;
-}
-div#cast-info {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: -webkit-center;
-}
+  $http.get(apiUrl).then(function (response) {
+    $scope.details = response.data;
+    console.log($scope.details);
+    console.log($scope.seasons);
+    $scope.title = response.data.title || response.data.name;
+    $scope.titleori =
+      response.data.original_title || response.data.original_name;
+    $scope.tagline = response.data.tagline;
+    $scope.certificationTV = "";
+    $scope.certificationMovie = "";
+    $scope.synopsis = response.data.overview;
+    $scope.rating = response.data.vote_average;
+    $scope.vote = response.data.vote_count;
+    $scope.release = response.data.release_date;
+    $scope.budget = formatToDollar(response.data.budget);
+    $scope.revenue = formatToDollar(response.data.revenue);
+    $scope.imdbId = response.data.imdb_id;
+    $scope.tmdbId = response.data.id;
+    $scope.wikidataId = response.data.external_ids.wikidata_id;
+    $scope.homepage = response.data.homepage;
+    $scope.firstair = response.data.first_air_date;
+    $scope.lastair = response.data.last_air_date;
+    $scope.numbsea = response.data.number_of_seasons;
+    $scope.numbeps = response.data.number_of_episodes;
+    $scope.genre = response.data.genres.map((i) => i.name).join(", ");
+    $scope.year = response.data.release_date || response.data.last_air_date;
+    $scope.companies =
+      (response.data.production_companies &&
+        response.data.production_companies.map((i) => i.name).join(", ")) ||
+      "";
+    var productionCountries = response.data.production_countries;
+    $scope.country =
+      (productionCountries &&
+        productionCountries
+          .map(function (country) {
+            return countryMap[country.name] || country.name;
+          })
+          .join(", ")) ||
+      "";
+    var languageCode = response.data.original_language;
+    $scope.language =
+      languageMap[languageCode] || response.data.original_language;
+    $scope.network =
+      (response.data.networks &&
+        response.data.networks.map((i) => i.name).join(", ")) ||
+      "";
+    $scope.run_time = response.data.episode_run_time;
+    $scope.runtime = response.data.runtime;
+    $scope.uri = response.data.backdrop_path;
+    $scope.media =
+      response.data.media_type || (response.data.name ? "TV" : "Movie");
+    $scope.fullmt =
+      response.data.media_type ||
+      (response.data.name ? "Full Episode" : "Full Movie");
+    $scope.logonet =
+      response.data.networks && response.data.networks.length > 0
+        ? response.data.networks[0].logo_path
+        : "";
+    $scope.logom =
+      response.data.production_companies &&
+      response.data.production_companies.length > 0
+        ? response.data.production_companies[0].logo_path
+        : "";
+    $scope.keywords = response.data.keywords;
+    $scope.keywordM = response.data.keywords;
+    $scope.alttitles = response.data.alternative_titles;
+    $scope.alttitlesM = response.data.alternative_titles;
+    $scope.seasons = response.data.seasons;
+    if (ENTITY_TYPE === "tv") {
+      fetchSeriesData();
+    } else if (ENTITY_TYPE === "movie") {
+      fetchMovieData();
+    }
+    if (ENTITY_TYPE === "tv") {
+      // Set IMDb ID for TV series
+      $scope.imdbId = response.data.external_ids.imdb_id || "";
+    }
+  });
 
-#button-container {
-  margin-top: 10px;
-  text-align: center;
-}
+  // Function to set the selected season
+  $scope.setSelectedSeason = function (seasonNumber) {
+    $http({
+      method: "GET",
+      url:
+        "https://api.themoviedb.org/3/" +
+        ENTITY_TYPE +
+        "/" +
+        ENTITY_ID +
+        "/season/" +
+        seasonNumber +
+        "?api_key=" +
+        API_KEY,
+    }).then(
+      function successCallback(response) {
+        $scope.selectedSeason = response.data;
+        console.log("Selected Season:", $scope.selectedSeason); // Check the selected season object
+      },
+      function errorCallback(response) {
+        console.log("Error: " + response.data);
+      }
+    );
+  };
 
-#poster-container {
-  float: left;
-  margin-right: 20px !important;
-  width: 100%;
-  max-width: 220px; /* Atur lebar maksimum poster sesuai kebutuhan Anda */
-  margin: 0 auto; /* Pusatkan poster di tengah */
-}
+  $scope.min2Hour = function (minutes) {
+    let hours = Math.floor(minutes / 60);
+    minutes = minutes % 60;
+    let hourString = hours > 0 ? hours + " h " : "";
+    let minuteString = minutes > 0 ? minutes + " m " : "";
+    return hourString + minuteString;
+  };
 
-#poster-container img {
-  width: 220px;
-  height: auto;
-  display: block;
-}
-
-#fath-image {
-  float: left;
-  margin-right: 20px !important;
-  width: 100%;
-  margin: 0 auto; /* Pusatkan gambar Fath di tengah */
-}
-
-#fath-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-#movie-details {
-  margin-top: 10px; /* Berikan jarak di atas movie details */
-}
-
-/* Media queries untuk perangkat seluler */
-@media (max-width: 767px) {
-  #poster-container {
-    float: none; /* Hilangkan float pada perangkat seluler */
-    max-width: 100%; /* Atur lebar maksimum poster menjadi 100% */
-    text-align: -webkit-center;
+  // Function to format number to dollar format
+  function formatToDollar(number) {
+    return $filter("currency")(number, "$", 2);
   }
 
-  #fath-image {
-    float: none; /* Hilangkan float pada perangkat seluler */
-    max-width: 100%; /* Atur lebar maksimum gambar Fath menjadi 100% */
-    text-align: -webkit-center;
+  $http
+    .get(`https://api.themoviedb.org/3/${ENTITY_TYPE}/${ENTITY_ID}/credits`, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+    .then(function successCallback(response) {
+      // Handle response and assign crew data to scope variable
+      $scope.crews = response.data.crew;
+      // Handle response and assign data to the scope variables
+      var credits = response.data;
+
+      // Get the list of actors
+      $scope.actors = credits.cast;
+
+      // Filter and get the name of the first director
+      var director = credits.crew.find(function (item) {
+        return item.job === "Director";
+      });
+
+      // Filter and get the name of the first producer
+      var producer = credits.crew.find(function (item) {
+        return item.job === "Producer";
+      });
+
+      // Set values for director and producer
+      if (director && producer && director.name === producer.name) {
+        $scope.director = director.name;
+        $scope.producer = "";
+      } else {
+        $scope.director = director ? director.name + "," : "N/A";
+        $scope.producer = producer ? producer.name : "N/A";
+      }
+      // Set values for director, producer, and writer
+      if (ENTITY_TYPE === "movie") {
+        var writer = credits.crew.find(function (item) {
+          return item.job === "Writer";
+        });
+        $scope.writer = writer ? writer.name : "N/A";
+      }
+
+      // Check if the TV Series has 'created_by' information
+      if (ENTITY_TYPE === "tv") {
+        $http
+          .get(`https://api.themoviedb.org/3/${ENTITY_TYPE}/${ENTITY_ID}`, {
+            params: {
+              api_key: API_KEY,
+            },
+          })
+          .then(function successCallback(response) {
+            var tvSeriesData = response.data;
+            var creators = tvSeriesData.created_by;
+            // Check if there are any creators
+            if (creators && creators.length > 0) {
+              // Limit the number of displayed creators to 2
+              var displayedCreators = creators.slice(0, 2);
+              $scope.creators = displayedCreators
+                .map(function (creator) {
+                  return creator.name;
+                })
+                .join(", ");
+            } else {
+              $scope.creators = "N/A";
+            }
+          })
+          .catch(function (error) {
+            console.log("Error fetching TV Series data:", error);
+          });
+      }
+    })
+    .catch(function (error) {
+      // Handle errors if needed
+      console.log("Error fetching credits data:", error);
+    });
+
+  $http({
+    method: "GET",
+    url:
+      "https://api.themoviedb.org/3/" +
+      ENTITY_TYPE +
+      "/" +
+      ENTITY_ID +
+      "/images?api_key=" +
+      API_KEY +
+      "",
+  }).then(
+    function successCallback(response) {
+      $scope.filebackdrop = response.data.backdrops;
+      $scope.fileposter = response.data.posters;
+      $scope.noimage = noimage;
+      $scope.noposter = noposter;
+    },
+    function errorCallback(response) {
+      console.log("Error: " + response.data);
+    }
+  );
+  // SEASON TMDB
+  if (ENTITY_TYPE === "tv" && typeof ENTITY_SEASON !== "undefined") {
+    var apiUrls = `https://api.themoviedb.org/3/${ENTITY_TYPE}/${ENTITY_ID}/season/${ENTITY_SEASON}?api_key=${API_KEY}`;
+
+    // Make the API call to fetch TV series season details
+    $http
+      .get(apiUrls)
+      .then(function (response) {
+        var data = response.data;
+        $scope.poster = data.poster_path || "";
+        $scope.seasonNumber = data.season_number || "";
+        $scope.seasonName = data.name || "";
+        $scope.episodes = data.episodes || [];
+      })
+      .catch(function (error) {
+        console.log("Error fetching data:", error);
+      });
+  }
+  function fetchEpisodeData() {
+    // Ambil data dari API TMDB untuk setiap episode
+    for (let i = 0; i < $scope.episodes.length; i++) {
+      const episode = $scope.episodes[i];
+      $http
+        .get(
+          `https://api.themoviedb.org/3/${ENTITY_TYPE}/${ENTITY_ID}/season/${ENTITY_SEASON}/episode/${episode.episode_number}`,
+          {
+            params: {
+              api_key: API_KEY,
+            },
+          }
+        )
+        .then(
+          function (response) {
+            // Tangani respon dan perbarui data runtime dan release date untuk episode tertentu
+            const episodeData = response.data;
+            episode.runtime = episodeData.runtime;
+            episode.air_date = episodeData.air_date;
+          },
+          function (error) {
+            // Tangani kesalahan jika diperlukan
+            console.log("Error fetching data:", error);
+          }
+        );
+    }
   }
 
-  #movie-details {
-    margin-top: 20px; /* Berikan jarak yang lebih besar di atas movie details */
+  // Ambil data dari API TMDB untuk sertifikasi seri TV
+  function fetchSeriesData() {
+    $http
+      .get(
+        `https://api.themoviedb.org/3/${ENTITY_TYPE}/${ENTITY_ID}/content_ratings`,
+        {
+          params: {
+            api_key: API_KEY,
+          },
+        }
+      )
+      .then(
+        function (response) {
+          const certifications = response.data.results;
+          const certificationForSeries = certifications.find(
+            (cert) => cert.iso_3166_1 === "US" //
+          );
+          $scope.certificationTV = certificationForSeries
+            ? certificationForSeries.rating
+            : "Not Rated";
+        },
+        function (error) {
+          console.log("Error fetching data:", error);
+        }
+      );
   }
-
-  #movie-details td.detail {
-    width: 25% !important;
+  // Ambil data dari API TMDB untuk sertifikasi film
+  function fetchMovieData() {
+    $http
+      .get(
+        `https://api.themoviedb.org/3/${ENTITY_TYPE}/${ENTITY_ID}/release_dates`,
+        {
+          params: {
+            api_key: API_KEY,
+          },
+        }
+      )
+      .then(
+        function (response) {
+          const releases = response.data.results;
+          const certificationForMovie = releases.find(
+            (release) => release.iso_3166_1 === "US"
+          );
+          $scope.certificationMovie = certificationForMovie
+            ? certificationForMovie.release_dates[0].certification
+            : "Not Rated";
+        },
+        function (error) {
+          console.log("Error fetching data:", error);
+        }
+      );
   }
-}
-
-#movie-details td.detail {
-  width: 18%;
-  padding: 6px;
-  vertical-align: top;
-}
-#movie-details td.isi-detail {
-  padding: 6px;
-}
-#movie-info {
-  overflow: auto;
-  font-size: 11px;
-  line-height: 20px;
-  background: #c1c1c1;
-}
-
-#other-crew-info {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: -webkit-center;
-}
-
-#crew-table {
-  width: 100%;
-}
-
-#crew-table td {
-  padding: 2px;
-  border: 2px solid white;
-}
-
-#crew-table td.job {
-  background-color: #c1c1c1; /* Latar belakang untuk kolom pekerjaan */
-}
-
-#crew-table td.name {
-  background-color: #e0e0e0; /* Latar belakang untuk kolom nama orang */
-}
-td.title {
-  width: 126px;
-  vertical-align: top;
-  font-weight: 600;
-  /* text-shadow: 1px 0px #17eaea; */
-  box-shadow: inset 0px -1px 0px 0px #80808047;
-  background: #121fcf;
-  background: linear-gradient(to right, #121fcf 0%, #cf1512 55%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-td.titik2 {
-  width: 5%;
-  vertical-align: top;
-}
-td.info {
-  padding-bottom: 5px;
-  vertical-align: top;
-  box-shadow: inset 0px -1px 0px 0px #80808047;
-  /* width: 126px; */
-  vertical-align: top;
-  font-weight: 600;
-  /* text-shadow: 1px 0px #17eaea; */
-  box-shadow: inset 0px -1px 0px 0px #80808047;
-  background: #121fcf;
-  background: linear-gradient(to right, #121fcf 0%, #cf1512 55%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-#movie-details tr:hover {
-  box-shadow: inset 0px 0px 77px -40px #00000096;
-}
-div.row {
-  margin-left: 0px;
-}
-.img-responsive {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-.nav-tabs .nav-link {
-  border: 1px solid transparent;
-  color: black;
-  font-weight: 600;
-}
-
-.critic-review {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-}
-
-.author-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.author-profile-image {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border-radius: 50%;
-}
-
-.author-name {
-  margin: 0;
-  font-weight: bold;
-  color: orange;
-  padding-right: 15px;
-}
-.review {
-  padding-top: 20px;
-}
-.review-content {
-  margin-bottom: 10px;
-  font-size: 13px;
-}
-
-.review-date {
-  margin-left: auto;
-  margin-right: 0;
-  font-size: 11px;
-  color: blue;
-}
-
-.status-rating {
-  text-align: center;
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.status {
-  text-shadow: 1px 0px #17eaea;
-  font-weight: bold;
-  display: grid;
-}
-/* Progress Circle Animation */
-.progress-circle {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background-color: #eee;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.progress-circle .progress-circle__background,
-.progress-circle .progress-circle__progress {
-  fill: none;
-  stroke-width: 5;
-  transition: stroke-dashoffset 0.3s;
-}
-
-.progress-circle .progress-circle__background {
-  stroke: #bbb;
-}
-
-.progress-circle .progress-circle__progress {
-  fill: none;
-  stroke: #007bff;
-  stroke-width: 10px;
-  stroke-dasharray: 105 !important;
-  stroke-dashoffset: 5 !important;
-  transform-origin: center;
-  transition: stroke-dashoffset 1s ease-out;
-}
-
-.progress-circle .rating {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 18px;
-  font-weight: bold;
-  text-shadow: 2px 0px 0px rgb(0 123 255);
-}
-
-.alternatives {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-top: 20px;
-}
-
-.alternatives ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.alternatives li {
-  margin-bottom: 5px;
-}
-.certification {
-  font-weight: 700;
-  color: #a1520e;
-  padding: 0 5px 0;
-  box-shadow: inset 0 0 0 2px #007bff;
-  border-radius: 5px;
-}
-.status-media {
-  box-shadow: 0 3px 0px 0px #007bff;
-}
-.badge {
-  padding: 0.5em 0.5em;
-}
-.badge-secondary {
-  margin: 3px;
-  /* border: 1px solid #007bff; */
-  color: #323232;
-  background-color: transparent !important;
-  box-shadow: 0 0 4px 0px #007bff;
-}
-p.source {
-  margin-right: 15px;
-}
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-  border: 3px solid #00e1ffa3;
-  border-radius: 50%;
-  background-color: #00e1ffa3;
-  width: 33px;
-  height: 33px;
-}
-.critical-reviews {
-  display: flex;
-  align-items: center;
-}
-.btn-more {
-  padding-left: 15px;
-}
-.rev-content {
-  box-shadow: inset 0 0 182px 1px #0000ff3d;
-  padding: 10px;
-  border-radius: 16px;
-}
-#season-info {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-img.poster.tv {
-  width: 100%;
-}
-.date-episode {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: blue;
-}
-ul#episode-list {
-  padding-left: 18px;
-}
-
-.numb-se-ep {
-  box-shadow: 0px 2px 0px 0px #213d8f;
-}
-
-.downl-detail {
-  margin: 20px 0;
-}
-#episode-list li {
-  box-shadow: inset 0px -1px 0px 0px #80808047;
-}
-.imglogonet {
-  width: 46px;
-}
-.span-lang {
-  color: black;
-}
-
-/* TMDB STYLE END */
+});
