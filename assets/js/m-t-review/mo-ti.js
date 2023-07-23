@@ -1,6 +1,6 @@
 var app = angular.module("app", []);
 
-app.controller("DetailsController", function ($scope, $http, $filter) {
+app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   var API_KEY = "50479b124e0923c371395234e579d901";
   var backdropUrl = "https://image.tmdb.org/t/p/w1280";
   var posterUrl = "https://image.tmdb.org/t/p/w300";
@@ -399,4 +399,58 @@ app.controller("DetailsController", function ($scope, $http, $filter) {
   $scope.getDisplayedReviews = function () {
     return $scope.showAll ? $scope.reviews : [$scope.getCurrentReview()];
   };
+  // Function to fetch trailer video URL for TV series
+  function fetchTVSeriesTrailerUrl() {
+    var trailerUrl =
+      "https://api.themoviedb.org/3/" +
+      ENTITY_TYPE +
+      "/" +
+      ENTITY_ID +
+      "/season/" +
+      ENTITY_SEASON +
+      "/videos?api_key=" +
+      API_KEY +
+      "&language=en-US";
+
+    $http.get(trailerUrl).then(function (response) {
+      var videos = response.data.results;
+      var trailerVideo = videos.find((video) => video.type === "Trailer");
+      if (trailerVideo) {
+        // Gunakan $sce.trustAsResourceUrl() untuk menganggap URL ini aman
+        $scope.trailerUrl = $sce.trustAsResourceUrl(
+          "https://www.youtube.com/embed/" + trailerVideo.key
+        );
+      }
+    });
+  }
+
+  // Function to fetch trailer video URL for movie
+  function fetchMovieTrailerUrl() {
+    var trailerUrl =
+      "https://api.themoviedb.org/3/" +
+      ENTITY_TYPE +
+      "/" +
+      ENTITY_ID +
+      "/videos?api_key=" +
+      API_KEY +
+      "&language=en-US";
+
+    $http.get(trailerUrl).then(function (response) {
+      var videos = response.data.results;
+      var trailerVideo = videos.find((video) => video.type === "Trailer");
+      if (trailerVideo) {
+        // Gunakan $sce.trustAsResourceUrl() untuk menganggap URL ini aman
+        $scope.trailerUrl = $sce.trustAsResourceUrl(
+          "https://www.youtube.com/embed/" + trailerVideo.key
+        );
+      }
+    });
+  }
+
+  // Setelah mendapatkan data detail, panggil fungsi untuk mengambil trailer URL
+  if (ENTITY_TYPE === "tv" && typeof ENTITY_SEASON !== "undefined") {
+    fetchTVSeriesTrailerUrl();
+  } else if (ENTITY_TYPE === "movie") {
+    fetchMovieTrailerUrl();
+  }
 });
