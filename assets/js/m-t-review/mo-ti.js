@@ -128,7 +128,11 @@ app.controller("DetailsController", function ($scope, $http, $filter) {
     let minuteString = minutes > 0 ? minutes + " m " : "";
     return hourString + minuteString;
   };
-
+  // Function to format the date
+  $scope.formatDate = function (dateString) {
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
   // Function to format number to dollar format
   function formatToDollar(number) {
     return $filter("currency")(number, "$", 2);
@@ -328,4 +332,71 @@ app.controller("DetailsController", function ($scope, $http, $filter) {
         }
       );
   }
+  // Function to fetch user critic reviews
+  function fetchUserCriticReviews() {
+    var reviewsUrl =
+      "https://api.themoviedb.org/3/" +
+      ENTITY_TYPE +
+      "/" +
+      ENTITY_ID +
+      "/reviews?api_key=" +
+      API_KEY +
+      "&language=en-US";
+
+    $http.get(reviewsUrl).then(function (response) {
+      $scope.reviews = response.data.results;
+    });
+  }
+
+  // Fetch user critic reviews when the page loads
+  fetchUserCriticReviews();
+
+  // Fetch movie/TV details and set title and genre
+  $http.get(apiUrl).then(function (response) {
+    $scope.details = response.data;
+    console.log($scope.details);
+    console.log($scope.seasons);
+    $scope.title = response.data.title || response.data.name;
+    $scope.genre = response.data.genres.map((i) => i.name).join(", ");
+  });
+
+  // Function to get the avatar URL
+  $scope.getAvatarUrl = function (avatarPath) {
+    if (avatarPath && avatarPath.includes("gravatar.com")) {
+      return avatarPath.replace("/", "");
+    } else if (avatarPath) {
+      return fileUrl + avatarPath;
+    } else {
+      return noposter;
+    }
+  };
+
+  // Variabel untuk melacak indeks review saat ini
+  $scope.currentReviewIndex = 0;
+
+  // Fungsi untuk menampilkan review berikutnya
+  $scope.showNextReview = function () {
+    if ($scope.currentReviewIndex < $scope.reviews.length - 1) {
+      // Tambahkan 1 ke indeks review saat ini untuk mengganti ke review berikutnya
+      $scope.currentReviewIndex += 1;
+    }
+  };
+
+  // Function untuk mendapatkan review saat ini berdasarkan indeks
+  $scope.getCurrentReview = function () {
+    return $scope.reviews[$scope.currentReviewIndex];
+  };
+
+  // Variable untuk track apakah semua review ditampilkan atau tidak
+  $scope.showAll = false;
+
+  // Function untuk toggle showAll variable
+  $scope.toggleShowAll = function () {
+    $scope.showAll = !$scope.showAll;
+  };
+
+  // Function untuk mendapatkan review yang ditampilkan sesuai dengan showAll variable
+  $scope.getDisplayedReviews = function () {
+    return $scope.showAll ? $scope.reviews : [$scope.getCurrentReview()];
+  };
 });
