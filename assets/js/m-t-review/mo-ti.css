@@ -24,6 +24,24 @@
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
 }
+.card-season {
+  font-size: 1.4rem;
+  font-family: system-ui;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  color: #000000;
+  /* text-shadow: 0 0 3px rgb(0 0 0); */
+  position: relative;
+  font-weight: 900;
+  top: 214px;
+  left: 182px;
+  border-radius: 100%;
+  background-color: #ffff00;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 8px 2px yellow;
+}
 .detail-name {
   padding: 1px !important;
   width: 28%;
@@ -41,6 +59,12 @@
 }
 h2.ng-binding {
   cursor: pointer;
+}
+@media (max-width: 767px) {
+  .card-season {
+    top: 407px;
+    left: 307px;
+  }
 }
 
 /* CRITIC REVIEW */
@@ -167,9 +191,20 @@ li.ng-binding.ng-scope:hover {
   box-shadow: inset 0px 26px 0px 0px #80808029;
 }
 p.ng-binding.epsAirdate {
+  font-size: 10px;
+  font-weight: 600;
   margin-bottom: 0.5rem;
   border-radius: 5px;
-  width: 100px;
+  width: 70px;
+  background-color: #fffe003b;
+  text-align: center;
+}
+span#epsRunTime.ng-binding {
+  font-size: 12px !important;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  padding: 0 10px;
   background-color: #fffe003b;
   text-align: center;
 }
