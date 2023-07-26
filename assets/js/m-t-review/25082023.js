@@ -453,4 +453,49 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   } else if (ENTITY_TYPE === "movie") {
     fetchMovieTrailerUrl();
   }
+  //SHOW MORE & LESS MORE POSTER / BACKDROP
+  $scope.fileposter = [];
+  $scope.filebackdrop = [];
+  $scope.posterLimit = 4; // Menampilkan 4 poster pertama
+  $scope.backdropLimit = 3; // Menampilkan 3 backdrop pertama
+  $scope.showMoreTextPosters = "Show More"; // Teks awal tombol Show More untuk poster
+  $scope.showMoreTextBackdrops = "Show More"; // Teks awal tombol Show More untuk backdrop
+
+  // Function to show more posters
+  $scope.showMorePosters = function () {
+    if ($scope.showMoreTextPosters === "Show More") {
+      // Jika tombol Show More belum diklik, tampilkan semua poster
+      $scope.posterLimit = $scope.fileposter.length;
+      $scope.showMoreTextPosters = "Less More";
+    } else {
+      // Jika tombol Show More telah diklik, tampilkan hanya 4 poster pertama
+      $scope.posterLimit = 4;
+      $scope.showMoreTextPosters = "Show More";
+    }
+
+    // Scroll to the top of the page
+    scrollToTop();
+  };
+
+  // Function to show more backdrops
+  $scope.showMoreBackdrops = function () {
+    if ($scope.showMoreTextBackdrops === "Show More") {
+      // Jika tombol Show More belum diklik, tampilkan semua backdrop
+      $scope.backdropLimit = $scope.filebackdrop.length;
+      $scope.showMoreTextBackdrops = "Less More";
+    } else {
+      // Jika tombol Show More telah diklik, tampilkan hanya 3 backdrop pertama
+      $scope.backdropLimit = 3;
+      $scope.showMoreTextBackdrops = "Show More";
+    }
+
+    // Scroll to the top of the page
+    scrollToTop();
+  };
+
+  // Function to scroll to the top of the page
+  function scrollToTop() {
+    // You can use smooth scrolling by replacing 'auto' with 'smooth'
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
 });
