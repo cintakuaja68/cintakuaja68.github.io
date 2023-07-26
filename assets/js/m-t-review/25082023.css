@@ -30,6 +30,11 @@ li.nav-item{
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
 }
+.title-head{
+font-size:20px;
+text-align:left;
+margin:0;
+}
 .card-season {
   font-size: 1.4rem;
   font-family: system-ui;
