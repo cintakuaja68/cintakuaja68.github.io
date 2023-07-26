@@ -30,6 +30,9 @@ li.nav-item{
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
 }
+table.table.table-hover.table-sm{
+border: 1px solid rgb(155 155 155 / 0%)!important;
+}
 .title-head{
 font-size:20px;
 text-align:left;
