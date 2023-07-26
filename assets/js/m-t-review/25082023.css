@@ -1,3 +1,8 @@
+/* NAV ITEM */
+li.nav-item{
+  list-style:unset;
+}
+
 /* DETAIL MOVIE TV */
 .card-poster {
   /* margin-bottom: -12px;
