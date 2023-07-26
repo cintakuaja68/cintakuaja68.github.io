@@ -1,6 +1,6 @@
 /* NAV ITEM */
 li.nav-item{
-  list-style:unset;
+  list-style:unset !important;
 }
 
 /* DETAIL MOVIE TV */
@@ -54,9 +54,11 @@ li.nav-item{
 }
 .titik2 {
   padding: 0 5px 0 0 !important;
+  width: 2%;
 }
 .detail-isi {
   padding: 1px !important;
+  width: 70%;
 }
 .table td,
 .table th {
