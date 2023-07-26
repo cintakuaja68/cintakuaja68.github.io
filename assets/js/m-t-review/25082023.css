@@ -1,0 +1,243 @@
+/* DETAIL MOVIE TV */
+.card-poster {
+  /* margin-bottom: -12px;
+  width: 100%;
+  color: antiquewhite;
+  position: relative;
+  top: 29px; */
+  /* padding-top: 5px; */
+  /* padding-left: 5px; */
+  /* padding-right: 5px; */
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgb(232, 3, 3) 15%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 8%,
+    rgb(0 0 0 / 57%) 24%
+  );
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 59%,
+    rgb(0 0 0 / 63%) 83%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+}
+.card-season {
+  font-size: 1.4rem;
+  font-family: system-ui;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  color: #000000;
+  /* text-shadow: 0 0 3px rgb(0 0 0); */
+  position: relative;
+  font-weight: 900;
+  top: 214px;
+  left: 182px;
+  border-radius: 100%;
+  background-color: #ffff00;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 8px 2px yellow;
+}
+.detail-name {
+  padding: 1px !important;
+  width: 28%;
+}
+.titik2 {
+  padding: 0 5px 0 0 !important;
+}
+.detail-isi {
+  padding: 1px !important;
+}
+.table td,
+.table th {
+  border-bottom: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e600;
+}
+h2.ng-binding {
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  .card-season {
+    top: 407px;
+    left: 307px;
+  }
+}
+
+/* CRITIC REVIEW */
+div.teaser {
+  /* padding-left: 0; */
+  /* padding-right: 0; */
+  width: 100%;
+  /* padding-top: 20px; */
+  padding: 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 500px -100px #1519bd;
+}
+div.grouped {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+}
+div.card {
+  width: 100%;
+  padding: 2px;
+  /* border: 1px solid rgba(var(--lightGrey), 1);
+  border-radius: var(--imageBorderRadius); */
+}
+img.avatar-critic {
+  width: 64px;
+  height: 64px;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+div.avatar-critic {
+  width: 64px;
+  margin-right: 20px;
+}
+div.review_container div.info-critic {
+  width: 100%;
+}
+div.rating_wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-start;
+}
+div.rating-critic {
+  display: block;
+  padding: 1px 8px;
+  margin-left: 14px;
+  font-size: 0.9em;
+  display: inline-flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background-color: #000;
+  border-color: #ccc;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.rounded {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 8px 16px;
+  transition: linear 0.1s;
+}
+.btn-showLest-more {
+  border: none;
+  border-radius: 5px;
+  font-family: cursive;
+  margin-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+/* BACKDROP & POSTER IMAGE */
+.img-posters,
+.img-backdrops {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* STAR DETAIL */
+.actor-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.actor-item,
+.crew-item {
+  flex: 1 0 200px;
+  margin: 8px;
+  text-align: center;
+}
+.img-cast,
+.img-crew,
+.noPoster {
+  width: 100px;
+}
+.actor-info {
+  margin-top: 8px;
+}
+.actorName,
+.crewName {
+  font-size: 14px;
+  width: 100px;
+}
+.actorJob,
+.crewJob {
+  font-size: 12px;
+  width: 100px;
+}
+/* CREWS DETAILS */
+
+/* EPISODE LIST */
+li.ng-binding.ng-scope:hover {
+  background-color: #8080801c;
+  box-shadow: inset 0px 26px 0px 0px #80808029;
+}
+p.ng-binding.epsAirdate {
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  width: 70px;
+  background-color: #fffe003b;
+  text-align: center;
+}
+span#epsRunTime.ng-binding {
+  font-size: 12px !important;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: #fffe003b;
+  text-align: center;
+}
+/* .epsNumber {
+  width: 82px;
+}
+.epsName {
+  width: 60%;
+}
+.epsRuntime {
+  width: 50px;
+}
+.epsDate {
+  width: 70px;
+} */
+
+/* TRAILER */
+#trailerContainer {
+  position: relative;
+  padding-bottom: 56.25%; /* Menyesuaikan rasio aspek video YouTube */
+  height: 0;
+}
+
+#trailerContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+div.ytp-gradient-top {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  #trailerContainer {
+    padding-bottom: 65%; /* Atau gunakan nilai lain sesuai kebutuhan */
+  }
+}
