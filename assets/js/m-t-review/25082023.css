@@ -50,15 +50,17 @@ li.nav-item{
 }
 .detail-name {
   padding: 1px !important;
-  width: 28%;
+  width: 30%;
+  text-align: left;
 }
 .titik2 {
   padding: 0 5px 0 0 !important;
-  width: 2%;
+  text-align: left;
 }
 .detail-isi {
   padding: 1px !important;
   width: 70%;
+  text-align: left;
 }
 .table td,
 .table th {
