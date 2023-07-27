@@ -399,6 +399,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   $scope.getDisplayedReviews = function () {
     return $scope.showAll ? $scope.reviews : [$scope.getCurrentReview()];
   };
+
   // Function to fetch trailer video URL for TV series
   function fetchTVSeriesTrailerUrl() {
     var trailerUrl =
@@ -420,6 +421,42 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
         $scope.trailerUrl = $sce.trustAsResourceUrl(
           "https://www.youtube.com/embed/" + trailerVideo.key
         );
+        // Trailer ditemukan, atur trailerNotAvailable menjadi false dan tampilkan elemen dengan ID "trailerContainer"
+        $scope.trailerNotAvailable = false;
+        $scope.showTrailerContainer = true;
+      } else {
+        // If trailer for the specified season is not available, fetch trailer for the TV series itself
+        fetchTVSeriesTrailerUrlForSeries();
+      }
+    });
+  }
+
+  // Function to fetch trailer video URL for TV series (for the series itself, not specific season)
+  function fetchTVSeriesTrailerUrlForSeries() {
+    var trailerUrl =
+      "https://api.themoviedb.org/3/" +
+      ENTITY_TYPE +
+      "/" +
+      ENTITY_ID +
+      "/videos?api_key=" +
+      API_KEY +
+      "&language=en-US";
+
+    $http.get(trailerUrl).then(function (response) {
+      var videos = response.data.results;
+      var trailerVideo = videos.find((video) => video.type === "Trailer");
+      if (trailerVideo) {
+        // Gunakan $sce.trustAsResourceUrl() untuk menganggap URL ini aman
+        $scope.trailerUrl = $sce.trustAsResourceUrl(
+          "https://www.youtube.com/embed/" + trailerVideo.key
+        );
+        // Trailer ditemukan, atur trailerNotAvailable menjadi false dan tampilkan elemen dengan ID "trailerContainer"
+        $scope.trailerNotAvailable = false;
+        $scope.showTrailerContainer = true;
+      } else {
+        // If no trailer is available for the TV series itself, set trailerNotAvailable menjadi true dan sembunyikan elemen dengan ID "trailerContainer"
+        $scope.trailerNotAvailable = true;
+        $scope.showTrailerContainer = false;
       }
     });
   }
@@ -447,69 +484,73 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     });
   }
 
-  // Setelah mendapatkan data detail, panggil fungsi untuk mengambil trailer URL
-  if (ENTITY_TYPE === "tv" && typeof ENTITY_SEASON !== "undefined") {
-    fetchTVSeriesTrailerUrl();
-  } else if (ENTITY_TYPE === "movie") {
-    fetchMovieTrailerUrl();
-  }
   //SHOW MORE & LESS MORE POSTER / BACKDROP
   $scope.fileposter = [];
-$scope.filebackdrop = [];
-$scope.posterLimit = 4; // Menampilkan 4 poster pertama
-$scope.backdropLimit = 3; // Menampilkan 3 backdrop pertama
-$scope.showMoreTextPosters = "Show More"; // Teks awal tombol Show More untuk poster
-$scope.showMoreTextBackdrops = "Show More"; // Teks awal tombol Show More untuk backdrop
-$scope.showAll = false; // Status untuk menampilkan semua item atau hanya beberapa item pertama
+  $scope.filebackdrop = [];
+  $scope.posterLimit = 4; // Menampilkan 4 poster pertama
+  $scope.backdropLimit = 3; // Menampilkan 3 backdrop pertama
+  $scope.showMoreTextPosters = "Show More"; // Teks awal tombol Show More untuk poster
+  $scope.showMoreTextBackdrops = "Show More"; // Teks awal tombol Show More untuk backdrop
+  $scope.showAll = false; // Status untuk menampilkan semua item atau hanya beberapa item pertama
 
-// Function untuk menampilkan lebih banyak poster
-$scope.showMorePosters = function () {
-  if ($scope.showMoreTextPosters === "Show More") {
-    // Jika tombol Show More belum diklik, tampilkan semua poster
-    $scope.posterLimit = $scope.fileposter.length;
-    $scope.showMoreTextPosters = "Less More";
-  } else {
-    // Jika tombol Show More telah diklik, tampilkan hanya 4 poster pertama
-    $scope.posterLimit = 4;
-    $scope.showMoreTextPosters = "Show More";
+  // Function untuk menampilkan lebih banyak poster
+  $scope.showMorePosters = function () {
+    if ($scope.showMoreTextPosters === "Show More") {
+      // Jika tombol Show More belum diklik, tampilkan semua poster
+      $scope.posterLimit = $scope.fileposter.length;
+      $scope.showMoreTextPosters = "Less More";
+    } else {
+      // Jika tombol Show More telah diklik, tampilkan hanya 4 poster pertama
+      $scope.posterLimit = 4;
+      $scope.showMoreTextPosters = "Show More";
+    }
+
+    // Scroll ke elemen dengan ID "navBar"
+    scrollToNavBar();
+  };
+
+  // Function untuk menampilkan lebih banyak backdrop
+  $scope.showMoreBackdrops = function () {
+    if ($scope.showMoreTextBackdrops === "Show More") {
+      // Jika tombol Show More belum diklik, tampilkan semua backdrop
+      $scope.backdropLimit = $scope.filebackdrop.length;
+      $scope.showMoreTextBackdrops = "Less More";
+    } else {
+      // Jika tombol Show More telah diklik, tampilkan hanya 3 backdrop pertama
+      $scope.backdropLimit = 3;
+      $scope.showMoreTextBackdrops = "Show More";
+    }
+
+    // Scroll ke elemen dengan ID "navBar"
+    scrollToNavBar();
+  };
+
+  // Function untuk toggle tampilan semua item
+  $scope.toggleShowAll = function () {
+    $scope.showAll = !$scope.showAll;
+    // Jika showAll adalah true, tampilkan semua item, jika false, tampilkan beberapa item pertama
+    $scope.posterLimit = $scope.showAll ? $scope.fileposter.length : 4;
+    $scope.backdropLimit = $scope.showAll ? $scope.filebackdrop.length : 3;
+    // Scroll ke elemen dengan ID "navBar"
+    scrollToNavBar();
+  };
+
+  // Function untuk melakukan scroll ke elemen dengan ID "navBar"
+  function scrollToNavBar() {
+    // Anda dapat menggunakan smooth scrolling dengan mengganti 'auto' dengan 'smooth'
+    var navBarElement = document.getElementById("navBar");
+    if (navBarElement) {
+      navBarElement.scrollIntoView({ behavior: "auto" });
+    }
   }
-
-  // Scroll ke elemen dengan ID "navBar"
-  scrollToNavBar();
-};
-
-// Function untuk menampilkan lebih banyak backdrop
-$scope.showMoreBackdrops = function () {
-  if ($scope.showMoreTextBackdrops === "Show More") {
-    // Jika tombol Show More belum diklik, tampilkan semua backdrop
-    $scope.backdropLimit = $scope.filebackdrop.length;
-    $scope.showMoreTextBackdrops = "Less More";
-  } else {
-    // Jika tombol Show More telah diklik, tampilkan hanya 3 backdrop pertama
-    $scope.backdropLimit = 3;
-    $scope.showMoreTextBackdrops = "Show More";
+  // Setelah mendapatkan data detail, panggil fungsi untuk mengambil trailer URL
+  if (ENTITY_TYPE === "tv" && typeof ENTITY_SEASON !== "undefined") {
+    $scope.trailerNotAvailable = false; // Defaultnya trailer tersedia
+    $scope.showTrailerContainer = true; // Tampilkan elemen dengan ID "trailerContainer" secara default
+    fetchTVSeriesTrailerUrl();
+  } else if (ENTITY_TYPE === "movie") {
+    $scope.trailerNotAvailable = false; // Defaultnya trailer tersedia
+    $scope.showTrailerContainer = true; // Tampilkan elemen dengan ID "trailerContainer" secara default
+    fetchMovieTrailerUrl();
   }
-
-  // Scroll ke elemen dengan ID "navBar"
-  scrollToNavBar();
-};
-
-// Function untuk toggle tampilan semua item
-$scope.toggleShowAll = function () {
-  $scope.showAll = !$scope.showAll;
-  // Jika showAll adalah true, tampilkan semua item, jika false, tampilkan beberapa item pertama
-  $scope.posterLimit = $scope.showAll ? $scope.fileposter.length : 4;
-  $scope.backdropLimit = $scope.showAll ? $scope.filebackdrop.length : 3;
-  // Scroll ke elemen dengan ID "navBar"
-  scrollToNavBar();
-};
-
-// Function untuk melakukan scroll ke elemen dengan ID "navBar"
-function scrollToNavBar() {
-  // Anda dapat menggunakan smooth scrolling dengan mengganti 'auto' dengan 'smooth'
-  var navBarElement = document.getElementById("navBar");
-  if (navBarElement) {
-    navBarElement.scrollIntoView({ behavior: "auto" });
-  }
-}
 });
