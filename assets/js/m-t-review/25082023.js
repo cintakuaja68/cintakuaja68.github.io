@@ -213,6 +213,13 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
       console.log("Error fetching credits data:", error);
     });
 
+  $scope.showAllActors = false;
+
+  // Function to toggle the value of showAllActors
+  $scope.toggleShowActors = function () {
+    $scope.showAllActors = !$scope.showAllActors;
+  };
+
   $http({
     method: "GET",
     url:
@@ -489,20 +496,21 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   $scope.filebackdrop = [];
   $scope.posterLimit = 4; // Menampilkan 4 poster pertama
   $scope.backdropLimit = 3; // Menampilkan 3 backdrop pertama
-  $scope.showMoreTextPosters = "Show More"; // Teks awal tombol Show More untuk poster
-  $scope.showMoreTextBackdrops = "Show More"; // Teks awal tombol Show More untuk backdrop
+  $scope.showMoreTextPosters = "[ Show More ]"; // Teks awal tombol Show More untuk poster
+  $scope.showMoreTextBackdrops = "[ Show More ]"; // Teks awal tombol Show More untuk backdrop
   $scope.showAll = false; // Status untuk menampilkan semua item atau hanya beberapa item pertama
+  $scope.showAllActors = false; // Status untuk menampilkan semua aktor atau hanya beberapa aktor pertama
 
   // Function untuk menampilkan lebih banyak poster
   $scope.showMorePosters = function () {
-    if ($scope.showMoreTextPosters === "Show More") {
+    if ($scope.showMoreTextPosters === "[ Show More ]") {
       // Jika tombol Show More belum diklik, tampilkan semua poster
       $scope.posterLimit = $scope.fileposter.length;
-      $scope.showMoreTextPosters = "Less More";
+      $scope.showMoreTextPosters = "[ Less More ]";
     } else {
       // Jika tombol Show More telah diklik, tampilkan hanya 4 poster pertama
       $scope.posterLimit = 4;
-      $scope.showMoreTextPosters = "Show More";
+      $scope.showMoreTextPosters = "[ Show More ]";
     }
 
     // Scroll ke elemen dengan ID "navBar"
@@ -511,14 +519,14 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
 
   // Function untuk menampilkan lebih banyak backdrop
   $scope.showMoreBackdrops = function () {
-    if ($scope.showMoreTextBackdrops === "Show More") {
+    if ($scope.showMoreTextBackdrops === "[ Show More ]") {
       // Jika tombol Show More belum diklik, tampilkan semua backdrop
       $scope.backdropLimit = $scope.filebackdrop.length;
-      $scope.showMoreTextBackdrops = "Less More";
+      $scope.showMoreTextBackdrops = "[ Less More ]";
     } else {
       // Jika tombol Show More telah diklik, tampilkan hanya 3 backdrop pertama
       $scope.backdropLimit = 3;
-      $scope.showMoreTextBackdrops = "Show More";
+      $scope.showMoreTextBackdrops = "[ Show More ]";
     }
 
     // Scroll ke elemen dengan ID "navBar"
@@ -531,6 +539,15 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     // Jika showAll adalah true, tampilkan semua item, jika false, tampilkan beberapa item pertama
     $scope.posterLimit = $scope.showAll ? $scope.fileposter.length : 4;
     $scope.backdropLimit = $scope.showAll ? $scope.filebackdrop.length : 3;
+    // Scroll ke elemen dengan ID "navBar"
+    scrollToNavBar();
+  };
+
+  // Function untuk toggle tampilan semua aktor
+  $scope.toggleShowActors = function () {
+    $scope.showAllActors = !$scope.showAllActors;
+    // Jika showAllActors adalah true, tampilkan semua aktor, jika false, tampilkan beberapa aktor pertama
+    $scope.actorLimit = $scope.showAllActors ? $scope.actors.length : 12;
     // Scroll ke elemen dengan ID "navBar"
     scrollToNavBar();
   };
