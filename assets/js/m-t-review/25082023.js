@@ -455,47 +455,61 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   }
   //SHOW MORE & LESS MORE POSTER / BACKDROP
   $scope.fileposter = [];
-  $scope.filebackdrop = [];
-  $scope.posterLimit = 4; // Menampilkan 4 poster pertama
-  $scope.backdropLimit = 3; // Menampilkan 3 backdrop pertama
-  $scope.showMoreTextPosters = "Show More"; // Teks awal tombol Show More untuk poster
-  $scope.showMoreTextBackdrops = "Show More"; // Teks awal tombol Show More untuk backdrop
+$scope.filebackdrop = [];
+$scope.posterLimit = 4; // Menampilkan 4 poster pertama
+$scope.backdropLimit = 3; // Menampilkan 3 backdrop pertama
+$scope.showMoreTextPosters = "Show More"; // Teks awal tombol Show More untuk poster
+$scope.showMoreTextBackdrops = "Show More"; // Teks awal tombol Show More untuk backdrop
+$scope.showAll = false; // Status untuk menampilkan semua item atau hanya beberapa item pertama
 
-  // Function to show more posters
-  $scope.showMorePosters = function () {
-    if ($scope.showMoreTextPosters === "Show More") {
-      // Jika tombol Show More belum diklik, tampilkan semua poster
-      $scope.posterLimit = $scope.fileposter.length;
-      $scope.showMoreTextPosters = "Less More";
-    } else {
-      // Jika tombol Show More telah diklik, tampilkan hanya 4 poster pertama
-      $scope.posterLimit = 4;
-      $scope.showMoreTextPosters = "Show More";
-    }
-
-    // Scroll to the top of the page
-    scrollToTop();
-  };
-
-  // Function to show more backdrops
-  $scope.showMoreBackdrops = function () {
-    if ($scope.showMoreTextBackdrops === "Show More") {
-      // Jika tombol Show More belum diklik, tampilkan semua backdrop
-      $scope.backdropLimit = $scope.filebackdrop.length;
-      $scope.showMoreTextBackdrops = "Less More";
-    } else {
-      // Jika tombol Show More telah diklik, tampilkan hanya 3 backdrop pertama
-      $scope.backdropLimit = 3;
-      $scope.showMoreTextBackdrops = "Show More";
-    }
-
-    // Scroll to the top of the page
-    scrollToTop();
-  };
-
-  // Function to scroll to the top of the page
-  function scrollToTop() {
-    // You can use smooth scrolling by replacing 'auto' with 'smooth'
-    window.scrollTo({ top: 0, behavior: "auto" });
+// Function untuk menampilkan lebih banyak poster
+$scope.showMorePosters = function () {
+  if ($scope.showMoreTextPosters === "Show More") {
+    // Jika tombol Show More belum diklik, tampilkan semua poster
+    $scope.posterLimit = $scope.fileposter.length;
+    $scope.showMoreTextPosters = "Less More";
+  } else {
+    // Jika tombol Show More telah diklik, tampilkan hanya 4 poster pertama
+    $scope.posterLimit = 4;
+    $scope.showMoreTextPosters = "Show More";
   }
+
+  // Scroll ke elemen dengan ID "navBar"
+  scrollToNavBar();
+};
+
+// Function untuk menampilkan lebih banyak backdrop
+$scope.showMoreBackdrops = function () {
+  if ($scope.showMoreTextBackdrops === "Show More") {
+    // Jika tombol Show More belum diklik, tampilkan semua backdrop
+    $scope.backdropLimit = $scope.filebackdrop.length;
+    $scope.showMoreTextBackdrops = "Less More";
+  } else {
+    // Jika tombol Show More telah diklik, tampilkan hanya 3 backdrop pertama
+    $scope.backdropLimit = 3;
+    $scope.showMoreTextBackdrops = "Show More";
+  }
+
+  // Scroll ke elemen dengan ID "navBar"
+  scrollToNavBar();
+};
+
+// Function untuk toggle tampilan semua item
+$scope.toggleShowAll = function () {
+  $scope.showAll = !$scope.showAll;
+  // Jika showAll adalah true, tampilkan semua item, jika false, tampilkan beberapa item pertama
+  $scope.posterLimit = $scope.showAll ? $scope.fileposter.length : 4;
+  $scope.backdropLimit = $scope.showAll ? $scope.filebackdrop.length : 3;
+  // Scroll ke elemen dengan ID "navBar"
+  scrollToNavBar();
+};
+
+// Function untuk melakukan scroll ke elemen dengan ID "navBar"
+function scrollToNavBar() {
+  // Anda dapat menggunakan smooth scrolling dengan mengganti 'auto' dengan 'smooth'
+  var navBarElement = document.getElementById("navBar");
+  if (navBarElement) {
+    navBarElement.scrollIntoView({ behavior: "auto" });
+  }
+}
 });
