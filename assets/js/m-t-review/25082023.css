@@ -231,7 +231,7 @@ padding-bottom: 30px;
 /* EPISODE LIST */
 li.ng-binding.ng-scope:hover {
   background-color: #8080801c;
-  /* box-shadow: inset 0px 26px 0px 0px #80808029;
+  /* box-shadow: inset 0px 26px 0px 0px #80808029;*/
 }
 p.ng-binding.epsAirdate {
   font-size: 10px;
