@@ -224,11 +224,13 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     /* Isi dengan daftar crew Anda */
   ];
   $scope.showAllCrews = false;
-  $scope.moreBtnText = "Show More";
+  $scope.moreBtnText = "[ Show More ]";
 
   $scope.toggleCrews = function () {
     $scope.showAllCrews = !$scope.showAllCrews;
-    $scope.moreBtnText = $scope.showAllCrews ? "Show Less" : "Show More";
+    $scope.moreBtnText = $scope.showAllCrews
+      ? "[ Show Less ]"
+      : "[ Show More ]";
   };
 
   $http({
@@ -443,7 +445,6 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
         $scope.trailerNotAvailable = false;
         $scope.showTrailerContainer = true;
       } else {
-        // If trailer for the specified season is not available, fetch trailer for the TV series itself
         fetchTVSeriesTrailerUrlForSeries();
       }
     });
@@ -472,7 +473,6 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
         $scope.trailerNotAvailable = false;
         $scope.showTrailerContainer = true;
       } else {
-        // If no trailer is available for the TV series itself, set trailerNotAvailable menjadi true dan sembunyikan elemen dengan ID "trailerContainer"
         $scope.trailerNotAvailable = true;
         $scope.showTrailerContainer = false;
       }
@@ -503,6 +503,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   }
 
   //SHOW MORE & LESS MORE POSTER / BACKDROP
+
   $scope.fileposter = [];
   $scope.filebackdrop = [];
   $scope.posterLimit = 4; // Menampilkan 4 poster pertama
@@ -517,7 +518,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     if ($scope.showMoreTextPosters === "[ Show More ]") {
       // Jika tombol Show More belum diklik, tampilkan semua poster
       $scope.posterLimit = $scope.fileposter.length;
-      $scope.showMoreTextPosters = "[ Less More ]";
+      $scope.showMoreTextPosters = "[ Show Less ]";
     } else {
       // Jika tombol Show More telah diklik, tampilkan hanya 4 poster pertama
       $scope.posterLimit = 4;
@@ -533,7 +534,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     if ($scope.showMoreTextBackdrops === "[ Show More ]") {
       // Jika tombol Show More belum diklik, tampilkan semua backdrop
       $scope.backdropLimit = $scope.filebackdrop.length;
-      $scope.showMoreTextBackdrops = "[ Less More ]";
+      $scope.showMoreTextBackdrops = "[ Show Less ]";
     } else {
       // Jika tombol Show More telah diklik, tampilkan hanya 3 backdrop pertama
       $scope.backdropLimit = 3;
@@ -559,7 +560,13 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     $scope.showAllActors = !$scope.showAllActors;
     // Jika showAllActors adalah true, tampilkan semua aktor, jika false, tampilkan beberapa aktor pertama
     $scope.actorLimit = $scope.showAllActors ? $scope.actors.length : 12;
-    // Scroll ke elemen dengan ID "navBar"
+    scrollToNavBar();
+  };
+
+  // Fungsi untuk toggle tampilan semua ulasan kritik
+  $scope.toggleShowAllRev = function () {
+    $scope.showAllRev = !$scope.showAllRev;
+    $scope.reviewLimit = $scope.showAllRev ? $scope.reviews.length : 3;
     scrollToNavBar();
   };
 
@@ -568,9 +575,19 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     // Anda dapat menggunakan smooth scrolling dengan mengganti 'auto' dengan 'smooth'
     var navBarElement = document.getElementById("navBar");
     if (navBarElement) {
-      navBarElement.scrollIntoView({ behavior: "auto" });
+      navBarElement.scrollIntoView({ behavior: "instant" });
     }
   }
+  // Function untuk mengubah teks tombol "Les More" dan melakukan scroll ke atas
+  $scope.toggleCrews = function () {
+    if ($scope.moreBtnText === "[ Show More ]") {
+      $scope.moreBtnText = "[ Show Less ]";
+    } else {
+      $scope.moreBtnText = "[ Show More ]";
+    }
+    scrollToNavBar();
+  };
+
   // Setelah mendapatkan data detail, panggil fungsi untuk mengambil trailer URL
   if (ENTITY_TYPE === "tv" && typeof ENTITY_SEASON !== "undefined") {
     $scope.trailerNotAvailable = false; // Defaultnya trailer tersedia
