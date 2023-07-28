@@ -1,6 +1,6 @@
 /* NAV ITEM */
-li.nav-item{
-  list-style:unset !important;
+li.nav-item {
+  list-style: unset !important;
 }
 
 /* DETAIL MOVIE TV */
@@ -30,14 +30,14 @@ li.nav-item{
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
 }
-table.table.table-hover.table-sm{
-border: 1px solid rgb(155 155 155 / 0%)!important;
+table.table.table-hover.table-sm {
+  border: 1px solid rgb(155 155 155 / 0%) !important;
   font-size: 14px;
 }
-.title-head{
-font-size: 18px !important;
-    text-align: left;
-    margin: 0 !important;
+.title-head {
+  font-size: 18px !important;
+  text-align: left;
+  margin: 0 !important;
 }
 .card-season {
   font-size: 1.4rem;
@@ -88,23 +88,23 @@ h2.ng-binding {
 
 /* CRITIC REVIEW */
 div.teaser {
-    /* padding-left: 0; */
-    /* padding-right: 0; */
-    width: 100%;
-    /* padding-top: 20px; */
-    margin: 10px 0 0 0;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: #80808021;
+  /* padding-left: 0; */
+  /* padding-right: 0; */
+  width: 100%;
+  /* padding-top: 20px; */
+  margin: 10px 0 0 0;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #80808021;
 }
 div.grouped {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    padding: 10px;
-    align-items: center;
-    background-color: #80808069;
-    border-radius: 5px 5px 0 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 10px;
+  align-items: center;
+  background-color: #80808069;
+  border-radius: 5px 5px 0 0;
 }
 div.card {
   width: 100%;
@@ -127,11 +127,11 @@ div.review_container div.info-critic {
   width: 100%;
 }
 div.rating_wrapper {
- width: 100%;
- display: flex;
- flex-wrap: nowrap;
- align-items: center;
- justify-content: flex-start;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 div.rating-critic {
   display: block;
@@ -147,8 +147,8 @@ div.rating-critic {
   border-radius: 5px;
   color: #fff;
 }
-.authorName{
-  margin:0 !important;
+.authorName {
+  margin: 0 !important;
 }
 .rounded {
   border: 2px solid #fff;
@@ -172,60 +172,108 @@ div.rating-critic {
   margin-bottom: 10px;
 }
 
-/* STAR DETAIL */
+/* STAR & CREW DETAIL */
 .actor-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.actor-item,
-.crew-item {
+.actor-item {
   flex: 1 0 200px;
   margin: 8px;
   text-align: center;
 }
 .img-cast,
-.img-crew,
-.noPoster {
+.noPosterCast {
   width: 100px;
 }
 .actor-info {
   margin-top: 8px;
 }
-.actorName,
-.crewName {
+.actorName {
   font-size: 14px;
- /* width: 100px; */
-    line-height: 16px;
-    font-family: 'Font Awesome 5 Brands';
-    font-weight: 600;
-    padding-bottom: 3px;
-    text-align:center;
-}
-.actorJob, .crewJob {
-  font-size: 12px;
   /* width: 100px; */
-    line-height: 16px;
-    color: #0066ff;
-    font-weight: 600;
-    text-align:center;
-}
-/* CREWS DETAILS */
-
-/* BUTTON MORE */
-.div-btn-show{
-text-align: center;
-padding-bottom: 30px;
-}
-.btn-show{
-  color: rgb(22 122 198);
-    font-weight: 700;
-    font-family: system-ui;
-    margin-bottom: 30px;
+  line-height: 16px;
+  font-family: "Font Awesome 5 Brands";
+  font-weight: 600;
+  padding-bottom: 3px;
   text-align: center;
 }
-.btn-show:hover{
+.actorJob {
+  font-size: 12px;
+  /* width: 100px; */
+  line-height: 16px;
+  color: #0066ff;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* CREWS DETAILS */
+.crewName {
+  font-size: 14px;
+  /* width: 100px; */
+  line-height: 16px;
+  font-family: "Font Awesome 5 Brands";
+  font-weight: 600;
+  padding-bottom: 3px;
+  text-align: center;
+}
+.noPosterCrew,
+.img-crew {
+  width: 90px;
+  height: 124px;
+  border: 2px solid #00a3ff;
+  border-radius: 5px;
+}
+.isiJobCrew {
+  color: #0317ff;
+}
+.isiJobNameCrew {
+}
+.img-crew-container {
+  width: 100px;
+  float: left;
+  margin-right: 10px;
+}
+.crew-details {
+  float: left;
+  font-size: 11px;
+  font-weight: 600;
+}
+.crew-item {
+  flex: 1 0 200px;
+  margin: 18px;
+  text-align: center;
+}
+.crewJob,
+.crewName {
+  width: 195px;
+  text-align: left;
+  border-bottom: 1px dotted;
+  padding: 6px 0 6px 0;
+}
+.crewJob {
+  color: #0c7c93;
+}
+@media (max-width: 768px) {
+  .colmd6Crew {
+    width: 50%;
+  }
+}
+/* BUTTON MORE */
+.div-btn-show {
+  text-align: center;
+  padding-bottom: 30px;
+}
+.btn-show {
+  color: rgb(22 122 198);
+  font-weight: 700;
+  font-family: system-ui;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.btn-show:hover {
   color: grey;
 }
 /* EPISODE LIST */
