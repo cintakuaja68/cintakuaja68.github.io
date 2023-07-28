@@ -220,6 +220,17 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     $scope.showAllActors = !$scope.showAllActors;
   };
 
+  $scope.crews = [
+    /* Isi dengan daftar crew Anda */
+  ];
+  $scope.showAllCrews = false;
+  $scope.moreBtnText = "Show More";
+
+  $scope.toggleCrews = function () {
+    $scope.showAllCrews = !$scope.showAllCrews;
+    $scope.moreBtnText = $scope.showAllCrews ? "Show Less" : "Show More";
+  };
+
   $http({
     method: "GET",
     url:
@@ -395,16 +406,16 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   };
 
   // Variable untuk track apakah semua review ditampilkan atau tidak
-  $scope.showAll = false;
+  $scope.showAllRev = false;
 
   // Function untuk toggle showAll variable
-  $scope.toggleShowAll = function () {
-    $scope.showAll = !$scope.showAll;
+  $scope.toggleShowAllRev = function () {
+    $scope.showAllRev = !$scope.showAllRev;
   };
 
   // Function untuk mendapatkan review yang ditampilkan sesuai dengan showAll variable
   $scope.getDisplayedReviews = function () {
-    return $scope.showAll ? $scope.reviews : [$scope.getCurrentReview()];
+    return $scope.showAllRev ? $scope.reviews : [$scope.getCurrentReview()];
   };
 
   // Function to fetch trailer video URL for TV series
@@ -498,7 +509,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   $scope.backdropLimit = 3; // Menampilkan 3 backdrop pertama
   $scope.showMoreTextPosters = "[ Show More ]"; // Teks awal tombol Show More untuk poster
   $scope.showMoreTextBackdrops = "[ Show More ]"; // Teks awal tombol Show More untuk backdrop
-  $scope.showAll = false; // Status untuk menampilkan semua item atau hanya beberapa item pertama
+  $scope.showAllRev = false; // Status untuk menampilkan semua item atau hanya beberapa item pertama
   $scope.showAllActors = false; // Status untuk menampilkan semua aktor atau hanya beberapa aktor pertama
 
   // Function untuk menampilkan lebih banyak poster
