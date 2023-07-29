@@ -272,6 +272,9 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
         console.log("Error fetching data:", error);
       });
   }
+  $scope.getBackdropUrl = function (path) {
+    return path ? backdropUrl + path : noimage;
+  };
   function fetchEpisodeData() {
     // Ambil data dari API TMDB untuk setiap episode
     for (let i = 0; i < $scope.episodes.length; i++) {
