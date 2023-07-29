@@ -165,6 +165,8 @@ div.rating-critic {
   justify-content: flex-end;
   flex-wrap: wrap;
 }
+.written{font-size:13px !important}
+
 /* BACKDROP & POSTER IMAGE */
 .img-posters,
 .img-backdrops {
@@ -339,7 +341,7 @@ div.rating-critic {
 
 .media-episode-heading {
   margin: 0;
-  font-size: 15px;
+  font-size: 15px !important;
 }
 
 #epsRunTime {
@@ -409,6 +411,9 @@ span#epsRunTime.ng-binding {
 div.ytp-gradient-top {
   display: none !important;
 }
+.trailerYt {
+  padding: 10px 0;
+}
 @media (max-width: 768px) {
   #trailerContainer {
     padding-bottom: 65%; /* Atau gunakan nilai lain sesuai kebutuhan */
@@ -424,9 +429,6 @@ div.ytp-gradient-top {
   border-left: unset !important;
   border-bottom: unset !important;
   padding: unset !important;
-}
-.trailerYt {
-  padding: 10px 0;
 }
 
 /* NAVBAR STCKY */
