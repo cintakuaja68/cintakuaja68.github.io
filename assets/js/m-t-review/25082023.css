@@ -414,7 +414,22 @@ div.ytp-gradient-top {
     padding-bottom: 65%; /* Atau gunakan nilai lain sesuai kebutuhan */
   }
 }
-
+/*UMUM-CSS*/
+.h2movieTv{
+   margin: 20px 0 0;
+   text-align: left;
+   position: relative;
+   font-family: var(--title-font);
+   height: 32px;
+   width: max-content;
+   font-size: 20px;
+   color: var(--theme-text-color);
+   font-weight: 600;
+   line-height: 32px;
+   border-left: 2px solid var(--button-bg-color);
+   border-bottom: 2px solid var(--button-bg-color);
+   padding: 0 12px 0 8px;
+}
 /* NAVBAR STCKY */
 #navBar {
   position: relative;
