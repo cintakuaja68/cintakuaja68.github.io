@@ -512,6 +512,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
   $scope.showMoreTextBackdrops = "[ Show More ]"; // Teks awal tombol Show More untuk backdrop
   $scope.showAllRev = false; // Status untuk menampilkan semua item atau hanya beberapa item pertama
   $scope.showAllActors = false; // Status untuk menampilkan semua aktor atau hanya beberapa aktor pertama
+  $scope.showAllCrews = false;
 
   // Function untuk menampilkan lebih banyak poster
   $scope.showMorePosters = function () {
@@ -563,6 +564,14 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     scrollToNavBar();
   };
 
+  // Function untuk toggle tampilan semua crew
+  $scope.toggleCrews = function () {
+    $scope.showAllCrews = !$scope.showAllCrews;
+    // Jika showAllCrews adalah true, tampilkan semua crew, jika false, tampilkan beberapa crew pertama
+    $scope.crewLimit = $scope.showAllCrews ? $scope.crews.length : 6;
+    scrollToNavBar();
+  };
+
   // Fungsi untuk toggle tampilan semua ulasan kritik
   $scope.toggleShowAllRev = function () {
     $scope.showAllRev = !$scope.showAllRev;
@@ -578,15 +587,6 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
       navBarElement.scrollIntoView({ behavior: "instant" });
     }
   }
-  // Function untuk mengubah teks tombol "Les More" dan melakukan scroll ke atas
-  $scope.toggleCrews = function () {
-    if ($scope.moreBtnText === "[ Show More ]") {
-      $scope.moreBtnText = "[ Show Less ]";
-    } else {
-      $scope.moreBtnText = "[ Show More ]";
-    }
-    scrollToNavBar();
-  };
 
   // Setelah mendapatkan data detail, panggil fungsi untuk mengambil trailer URL
   if (ENTITY_TYPE === "tv" && typeof ENTITY_SEASON !== "undefined") {
@@ -599,3 +599,5 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     fetchMovieTrailerUrl();
   }
 });
+
+// NAVBAR STICKY
