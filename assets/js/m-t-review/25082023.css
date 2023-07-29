@@ -415,21 +415,20 @@ div.ytp-gradient-top {
   }
 }
 /*UMUM-CSS*/
-.h2movieTv{
-   margin: 20px 0 0;
-   text-align: left;
-   position: relative;
-   font-family: var(--title-font);
-   height: 32px;
-   width: max-content;
-   font-size: 20px;
-   color: var(--theme-text-color);
-   font-weight: 600;
-   line-height: 32px;
-   border-left: 2px solid var(--button-bg-color);
-   border-bottom: 2px solid var(--button-bg-color);
-   padding: 0 12px 0 8px;
+.h2movieTv {
+  margin: unset !important;
+  position: unset !important;
+  height: unset !important;
+  width: unset !important;
+  line-height: unset !important;
+  border-left: unset !important;
+  border-bottom: unset !important;
+  padding: unset !important;
 }
+.trailerYt {
+  padding: 10px 0;
+}
+
 /* NAVBAR STCKY */
 #navBar {
   position: relative;
