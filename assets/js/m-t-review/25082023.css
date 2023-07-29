@@ -306,8 +306,11 @@ div.rating-critic {
 }
 
 .imgEpisode {
-  display: block;
-  border-radius: 4px;
+  width: 130px;
+    max-width: 130px !important;
+    height: 75px;
+    display: block;
+    border-radius: 4px;
 }
 
 .img-cover {
