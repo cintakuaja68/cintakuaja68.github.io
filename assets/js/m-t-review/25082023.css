@@ -180,16 +180,16 @@ div.rating-critic {
 }
 
 .col-md-3 {
-  flex-basis: 25%;
-  max-width: 25%;
+/*   flex-basis: 25%;
+  max-width: 25%; */
   padding: 5px;
 }
 
 /* Tata letak untuk tampilan mobile */
 @media screen and (max-width: 768px) {
-  .row.ulIMGposter {
+/*   .row.ulIMGposter {
     display: block;
-  }
+  } */
   
   .col-md-3 {
     flex-basis: 50%;
