@@ -173,6 +173,29 @@ div.rating-critic {
   width: 100%;
   margin-bottom: 10px;
 }
+/* Tata letak untuk tampilan PC atau laptop */
+.row.ulIMGposter {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-3 {
+  flex-basis: 25%;
+  max-width: 25%;
+  padding: 5px;
+}
+
+/* Tata letak untuk tampilan mobile */
+@media screen and (max-width: 768px) {
+  .row.ulIMGposter {
+    display: block;
+  }
+  
+  .col-md-3 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
 
 /* STAR DETAIL */
 .actor-list {
