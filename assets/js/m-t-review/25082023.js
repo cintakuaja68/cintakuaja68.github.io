@@ -601,6 +601,100 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     $scope.showTrailerContainer = true; // Tampilkan elemen dengan ID "trailerContainer" secara default
     fetchMovieTrailerUrl();
   }
+
+  // Fungsi film "Now Playing"
+  function getNowPlayingMovies() {
+    var nowPlayingUrl =
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=" +
+      API_KEY +
+      "&language=en-US&page=1";
+
+    $http.get(nowPlayingUrl).then(function (response) {
+      $scope.nowPlayingMovies = response.data.results;
+    });
+  }
+  getNowPlayingMovies();
+  // Fungsi film "Now Playing" END
+
+  //   FUngsi tv airing today
+  function getAiringTodayTVShows() {
+    var airingTodayUrl =
+      "https://api.themoviedb.org/3/tv/airing_today?api_key=" +
+      API_KEY +
+      "&language=en-US&page=1";
+
+    $http.get(airingTodayUrl).then(function (response) {
+      $scope.airingTodayTVShows = response.data.results;
+
+      // Menambahkan data penyedia ke setiap acara TV
+      $scope.airingTodayTVShows.forEach(function (tvShow) {
+        getTVShowProviders(tvShow.id).then(function (providers) {
+          tvShow.provider = providers;
+        });
+      });
+    });
+  }
+
+  // Fungsi untuk mendapatkan TV Shows "On The Air" dari API TMDB
+  function getOnTheAirTVShows() {
+    var onTheAirUrl =
+      "https://api.themoviedb.org/3/tv/on_the_air?api_key=" +
+      API_KEY +
+      "&language=en-US&page=1";
+
+    $http.get(onTheAirUrl).then(function (response) {
+      $scope.onTheAirTVShows = response.data.results;
+    });
+  }
+
+  // Fungsi untuk mendapatkan daftar penyedia dari API TMDB
+  function getTVShowProviders(tvShowId) {
+    var providersUrl =
+      "https://api.themoviedb.org/3/tv/" +
+      tvShowId +
+      "/watch/providers?api_key=" +
+      API_KEY;
+
+    return $http.get(providersUrl).then(function (response) {
+      var providers = [];
+
+      // Mendapatkan daftar penyedia dari data API
+      if (response.data.results && response.data.results.US) {
+        var usProviders = response.data.results.US;
+
+        if (usProviders.buy) {
+          providers.buy = usProviders.buy[0].provider_name;
+        }
+
+        if (usProviders.rent) {
+          providers.rent = usProviders.rent[0].provider_name;
+        }
+
+        if (usProviders.flatrate) {
+          providers.streaming = usProviders.flatrate[0].provider_name;
+        }
+      }
+
+      return providers;
+    });
+  }
+  //   FUngsi tv airing today END
+  //   Fungsi TV On The AIR
+  function getOnTheAirTVShows() {
+    var onTheAirUrl =
+      "https://api.themoviedb.org/3/tv/on_the_air?api_key=" +
+      API_KEY +
+      "&language=en-US&page=1";
+
+    $http.get(onTheAirUrl).then(function (response) {
+      $scope.onTheAirTVShows = response.data.results;
+    });
+  }
+  //   Fungsi TV On The AIR END
+  // Panggil fungsi
+  getNowPlayingMovies();
+  getAiringTodayTVShows();
+  getOnTheAirTVShows();
 });
 
 // NAVBAR STICKY
