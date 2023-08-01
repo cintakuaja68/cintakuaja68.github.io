@@ -534,4 +534,8 @@ div.ytp-gradient-top {
     align-items: flex-start;
     text-align: left;
   }
+  div.movie-container.col-md-3 {
+    flex-basis: 25%;
+    max-width: 25%;
+}
 }
