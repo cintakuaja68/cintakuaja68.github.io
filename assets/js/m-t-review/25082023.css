@@ -65,6 +65,11 @@ table.table.table-hover.table-sm {
   width: 30%;
   text-align: left;
 }
+.tagbox{
+  color: #00b3ff;
+    font-weight: 400;
+    text-shadow: 0 0 1px #07ebef;
+}
 .titik2 {
   padding: 0 5px 0 0 !important;
   text-align: left;
