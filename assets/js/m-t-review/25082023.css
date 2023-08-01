@@ -1,6 +1,9 @@
 /* NAV ITEM */
 li.nav-item {
   list-style: unset !important;
+  color: #00b3ff;
+  font-weight: 400;
+  text-shadow: 0 0 1px #07ebef;
 }
 
 /* DETAIL MOVIE TV */
