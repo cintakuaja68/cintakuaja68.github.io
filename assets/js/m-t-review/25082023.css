@@ -536,7 +536,7 @@ div.ytp-gradient-top {
   }
 }
 @media screen and (max-width: 768px){
-div.movie-container.col-md-3 {
+div.movie-container.col-md-3, div.tvshow-container.col-md-3 {
     flex-basis: 25%;
     max-width: 25%;
 }
