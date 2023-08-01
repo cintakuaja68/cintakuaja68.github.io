@@ -538,4 +538,7 @@ div.ytp-gradient-top {
     flex-basis: 25%;
     max-width: 25%;
 }
+  .movie-title, .tvshow-title {
+    width: 92px;
+}
 }
