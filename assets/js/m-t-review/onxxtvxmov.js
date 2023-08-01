@@ -35,85 +35,34 @@ $(document).ready(function () {
             // Tangkap daftar film dari response
             const nowPlayingMovies = response.results;
 
-            // Bersihkan elemen daftar film sebelum menambahkan film ke Owl Carousel
-            $("#nowPlayingMoviesCarousel").empty();
-
-            // Loop melalui daftar film dan tambahkan ke dalam Owl Carousel
-            $.each(nowPlayingMovies, function (index, movie) {
-              const movieTitle = movie.title;
-              const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
-              const movieItem = `
-              <div class="item">
-                <div class="movie-container">
-                  <img src="${moviePoster}" alt="${movieTitle}">
-                  <div class="movie-title">${movieTitle}</div>
-                </div>
-              </div>
-            `;
-
-              $("#nowPlayingMoviesCarousel").append(movieItem);
-            });
-
-            // Inisialisasi Owl Carousel setelah data film ditambahkan
-            $("#nowPlayingMoviesCarousel").owlCarousel({
-              items: 4, // Tampilkan 4 film sekaligus
-              loop: false, // Putar ulang film saat mencapai akhir
-              margin: 20, // Jarak antara setiap film
-              responsiveClass: true,
-              // responsive: {
-              //   // Atur tampilan film untuk perangkat dengan lebar 0 hingga 768 piksel (misalnya, perangkat seluler)
-              //   0: {
-              //     items: 1, // Tampilkan 1 film sekaligus untuk perangkat seluler
-              //   },
-              //   // Atur tampilan film untuk perangkat dengan lebar 768 hingga 992 piksel (misalnya, tablet)
-              //   768: {
-              //     items: 3, // Tampilkan 3 film sekaligus untuk tablet
-              //   },
-              //   // Atur tampilan film untuk perangkat dengan lebar lebih dari 992 piksel (misalnya, desktop)
-              //   992: {
-              //     items: 4, // Tampilkan 4 film sekaligus untuk desktop
-              //   },
-              // },
-              // Tambahkan navigasi "Prev" dan "Next"
-              nav: true,
-              navText: ["Prev", "Next"],
-            });
-          },
-          error: function () {
-            alert("Gagal memuat daftar film yang sedang diputar.");
-          },
-        });
-
-        // Lakukan permintaan AJAX ke API TMDB untuk film yang sedang diputar
-        $.ajax({
-          url: NOW_PLAYING_URL,
-          method: "GET",
-          dataType: "json",
-          success: function (response) {
-            // Tangkap daftar film dari response
-            const nowPlayingMovies = response.results;
-
             // Bersihkan elemen daftar film sebelum menambahkan film
             $("#nowPlayingMoviesList").empty();
+            $("#nowPlayingMoviesListLimited").empty();
 
             // Loop melalui daftar film dan tambahkan ke dalam elemen daftar
             $.each(nowPlayingMovies, function (index, movie) {
               const movieTitle = movie.title;
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
-              <div class="movie-container col-md-3">
-                <img src="${moviePoster}" alt="${movieTitle}">
-                <div class="movie-title">${movieTitle}</div>
-              </div>
-            `;
+                <div class="movie-container col-md-3">
+                  <img src="${moviePoster}" alt="${movieTitle}">
+                  <div class="movie-title">${movieTitle}</div>
+                </div>
+              `;
 
               $("#nowPlayingMoviesList").append(movieContainer);
+
+              // Batasi hanya menampilkan 4 film pertama di daftar kedua
+              if (index < 4) {
+                $("#nowPlayingMoviesListLimited").append(movieContainer);
+              }
             });
           },
           error: function () {
             alert("Gagal memuat daftar film yang sedang diputar.");
           },
         });
+
         // Lakukan permintaan AJAX ke API TMDB untuk top rated movies
         $.ajax({
           url: TOP_RATED_MOVIES_URL,
@@ -309,6 +258,23 @@ $(document).ready(function () {
             // Tangkap daftar airing today TV shows dari response
             const airingTodayTVShows = response.results;
 
+            // Bersihkan elemen daftar airing today TV shows sebelum menambahkan acara TV (dibatasi 4 acara)
+            $("#airingTodayTVShowsList").empty();
+
+            // Loop melalui daftar airing today TV shows dan tambahkan ke dalam elemen daftar (dibatasi 4 acara)
+            $.each(airingTodayTVShows.slice(0, 4), function (index, show) {
+              const showTitle = show.name;
+              const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
+              const showContainer = `
+                <div class="tvshow-container col-md-3">
+                  <img src="${showPoster}" alt="${showTitle}">
+                  <div class="tvshow-title">${showTitle}</div>
+                </div>
+              `;
+
+              $("#airingTodayTVShowsList").append(showContainer);
+            });
+
             // Bersihkan elemen daftar airing today TV shows tanpa batasan sebelum menambahkan acara TV
             $("#airingTodayTVShowsListUnlimited").empty();
 
@@ -328,63 +294,6 @@ $(document).ready(function () {
           },
           error: function () {
             alert("Gagal memuat daftar airing today TV shows.");
-          },
-        });
-
-        $.ajax({
-          url: AIRING_TODAY_TV_URL,
-          method: "GET",
-          dataType: "json",
-          success: function (response) {
-            // Tangkap daftar acara TV dari response
-            const airingTodayTVShows = response.results;
-
-            // Bersihkan elemen daftar acara TV sebelum menambahkan acara TV ke Owl Carousel
-            $("#airingTodayTVShowsCarousel").empty();
-
-            // Loop melalui daftar acara TV dan tambahkan ke dalam Owl Carousel
-            $.each(airingTodayTVShows, function (index, tvShow) {
-              const tvShowTitle = tvShow.name;
-              const tvShowPoster = `https://image.tmdb.org/t/p/w200${tvShow.poster_path}`;
-              const tvShowItem = `
-              <div class="item">
-                <div class="tvshow-container">
-                  <img src="${tvShowPoster}" alt="${tvShowTitle}">
-                  <div class="tvshow-title">${tvShowTitle}</div>
-                </div>
-              </div>
-            `;
-
-              $("#airingTodayTVShowsCarousel").append(tvShowItem);
-            });
-
-            // Inisialisasi Owl Carousel setelah data acara TV ditambahkan
-            $("#airingTodayTVShowsCarousel").owlCarousel({
-              items: 4, // Tampilkan 4 acara TV sekaligus
-              loop: false, // Putar ulang acara TV saat mencapai akhir
-              margin: 20, // Jarak antara setiap acara TV
-              responsiveClass: true,
-              // responsive: {
-              //   // Atur tampilan acara TV untuk perangkat dengan lebar 0 hingga 768 piksel (misalnya, perangkat seluler)
-              //   0: {
-              //     items: 1, // Tampilkan 1 acara TV sekaligus untuk perangkat seluler
-              //   },
-              //   // Atur tampilan acara TV untuk perangkat dengan lebar 768 hingga 992 piksel (misalnya, tablet)
-              //   768: {
-              //     items: 3, // Tampilkan 3 acara TV sekaligus untuk tablet
-              //   },
-              //   // Atur tampilan acara TV untuk perangkat dengan lebar lebih dari 992 piksel (misalnya, desktop)
-              //   992: {
-              //     items: 4, // Tampilkan 4 acara TV sekaligus untuk desktop
-              //   },
-              // },
-              // Tambahkan navigasi "Prev" dan "Next"
-              nav: true,
-              navText: ["Prev", "Next"],
-            });
-          },
-          error: function () {
-            alert("Gagal memuat daftar acara TV yang tayang hari ini.");
           },
         });
       });
