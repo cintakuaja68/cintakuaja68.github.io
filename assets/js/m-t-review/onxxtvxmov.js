@@ -56,7 +56,7 @@ $(document).ready(function () {
             $("#nowPlayingMoviesListLimited").empty();
 
             // Loop melalui daftar airing today TV shows dan tambahkan ke dalam elemen daftar tanpa batasan
-            $.each(nowPlayingMovies, function (index, movie) {
+            $.each(nowPlayingMovies.slice(0, 4), function (index, movie) {
               const movieTitle = movie.title;
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
