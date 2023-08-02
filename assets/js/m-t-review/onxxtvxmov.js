@@ -44,7 +44,7 @@ $(document).ready(function () {
               const movieTitle = movie.title;
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
-                <div class="movie-container col-md-3">
+                <div class="movie-container2 col-md-3">
                   <img src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title">${movieTitle}</div>
                 </div>
@@ -111,7 +111,7 @@ $(document).ready(function () {
               const showTitle = show.name;
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
-                <div class="tvshow-container col-md-3">
+                <div class="tvshow-container2 col-md-3">
                   <img src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title">${showTitle}</div>
                 </div>
@@ -142,7 +142,7 @@ $(document).ready(function () {
               const movieTitle = movie.title;
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
-                <div class="movie-container col-md-3">
+                <div class="movie-container2 col-md-3">
                   <img src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title">${movieTitle}</div>
                 </div>
@@ -173,7 +173,7 @@ $(document).ready(function () {
               const showTitle = show.name;
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
-                <div class="tvshow-container col-md-3">
+                <div class="tvshow-container2 col-md-3">
                   <img src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title">${showTitle}</div>
                 </div>
@@ -204,7 +204,7 @@ $(document).ready(function () {
               const movieTitle = movie.title;
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
-                <div class="movie-container col-md-3">
+                <div class="movie-container2 col-md-3">
                   <img src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title">${movieTitle}</div>
                 </div>
@@ -235,7 +235,7 @@ $(document).ready(function () {
               const showTitle = show.name;
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
-                <div class="tvshow-container col-md-3">
+                <div class="tvshow-container2 col-md-3">
                   <img src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title">${showTitle}</div>
                 </div>
@@ -283,7 +283,7 @@ $(document).ready(function () {
               const showTitle = show.name;
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
-                <div class="tvshow-container col-md-3">
+                <div class="tvshow-container2 col-md-3">
                   <img src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title">${showTitle}</div>
                 </div>
