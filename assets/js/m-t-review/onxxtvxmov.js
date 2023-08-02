@@ -27,19 +27,18 @@ $(document).ready(function () {
         const ON_THE_AIR_TV_URL = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_KEY}`;
 
         // Lakukan permintaan AJAX ke API TMDB untuk film yang sedang diputar
-        $.ajax({
+         $.ajax({
           url: NOW_PLAYING_URL,
           method: "GET",
           dataType: "json",
           success: function (response) {
-            // Tangkap daftar film dari response
+            // Tangkap daftar airing today TV shows dari response
             const nowPlayingMovies = response.results;
 
-            // Bersihkan elemen daftar film sebelum menambahkan film
+            // Bersihkan elemen daftar airing today TV shows sebelum menambahkan acara TV (dibatasi 4 acara)
             $("#nowPlayingMoviesList").empty();
-            $("#nowPlayingMoviesListLimited").empty();
 
-            // Loop melalui daftar film dan tambahkan ke dalam elemen daftar
+            // Loop melalui daftar airing today TV shows dan tambahkan ke dalam elemen daftar (dibatasi 4 acara)
             $.each(nowPlayingMovies, function (index, movie) {
               const movieTitle = movie.title;
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
@@ -51,11 +50,22 @@ $(document).ready(function () {
               `;
 
               $("#nowPlayingMoviesList").append(movieContainer);
+            });
 
-              // Batasi hanya menampilkan 4 film pertama di daftar kedua
-              if (index < 4) {
-                $("#nowPlayingMoviesListLimited").append(movieContainer);
-              }
+            // Bersihkan elemen daftar airing today TV shows tanpa batasan sebelum menambahkan acara TV
+            $("#nowPlayingMoviesListLimited").empty();
+
+            // Loop melalui daftar airing today TV shows dan tambahkan ke dalam elemen daftar tanpa batasan
+            $.each(nowPlayingMovies, function (index, movie) {
+              const movieTitle = movie.title;
+              const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+              const movieContainer = `
+                <div class="movie-container col-md-3">
+                  <img class="poster1Img" src="${moviePoster}" alt="${movieTitle}">
+                  <div class="movie-title">${movieTitle}</div>
+                </div>
+              `;
+              $("#nowPlayingMoviesListLimited").append(movieContainer);
             });
           },
           error: function () {
