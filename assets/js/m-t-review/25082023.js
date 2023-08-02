@@ -44,6 +44,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
     $scope.numbeps = response.data.number_of_episodes;
     $scope.genre = response.data.genres.map((i) => i.name).join(", ");
     $scope.year = response.data.release_date || response.data.last_air_date;
+     $scope.Myear = "(" +response.data.release_date.slice(0, 4) + ")";
     $scope.companies =
       (response.data.production_companies &&
         response.data.production_companies.map((i) => i.name).join(", ")) ||
@@ -267,6 +268,7 @@ app.controller("DetailsController", function ($scope, $http, $filter, $sce) {
         $scope.seasonNumber = data.season_number || "";
         $scope.seasonName = data.name || "";
         $scope.episodes = data.episodes || [];
+        $scope.Tyear = "(" + data.air_date.slice(0, 4) + ")" || "";
       })
       .catch(function (error) {
         console.log("Error fetching data:", error);
