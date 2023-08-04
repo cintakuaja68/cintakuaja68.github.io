@@ -665,6 +665,7 @@ div.movie-container.col-md-3, div.tvshow-container.col-md-3 {
         width: 280px;
         position: absolute;
         background: white;
+        z-index: 3;
       }
       div.suggestion-item:hover {
         background-color: #80808029;
@@ -677,7 +678,8 @@ div.movie-container.col-md-3, div.tvshow-container.col-md-3 {
         color: #007bff;
         font-family: cursive;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 20px;
       }
       input#searchInput.form-control {
         font-family: cursive;
