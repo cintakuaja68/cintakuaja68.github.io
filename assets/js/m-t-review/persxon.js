@@ -193,6 +193,7 @@ function displayPopularPeople(popularPeople) {
   popularPeople.forEach((person) => {
     const li = document.createElement("li");
     li.className = "popular-person";
+    li.style.listStyleType = "none";
 
     const img = document.createElement("img");
     img.className = "imgPopular"; // Tambahkan kelas imgPopular
@@ -236,6 +237,7 @@ function displayTrendingPeople(trendingPeople) {
   trendingPeople.forEach((person) => {
     const li = document.createElement("li");
     li.className = "trending-person";
+    li.style.listStyleType = "none";
 
     const img = document.createElement("img");
     img.className = "imgPopular"; // Tambahkan kelas imgPopular
