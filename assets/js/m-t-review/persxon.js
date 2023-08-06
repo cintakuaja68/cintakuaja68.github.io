@@ -86,50 +86,96 @@ function hideResults() {
       }
 
       // Function to display the person's COMBINED CREDIT for details
-      function displayKnownFor(person) {
-        const personId = person.id;
-        const url = `https://api.themoviedb.org/3/person/${personId}/combined_credits?api_key=${API_KEY}`;
+      // Deklarasi variabel global untuk menyimpan data kombinasi lengkap dan batas awal yang akan ditampilkan
+let allCombinedCredits = [];
+let initialLimit = 5;
 
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            const combinedCreditsList = document.getElementById(
-              "cobinedCreditsForList"
-            );
-            combinedCreditsList.innerHTML = "";
-            combinedCreditsList.classList.add("credits-list"); // Add class to the ul
+function displayKnownFor(person) {
+  const personId = person.id;
+  const url = `https://api.themoviedb.org/3/person/${personId}/combined_credits?api_key=${API_KEY}`;
 
-            data.cast.forEach((credit) => {
-              const title = credit.title || credit.name; // Use title if available, otherwise use name for TV shows
-              const href =
-                credit.media_type === "movie"
-                  ? "/search/label/Movie"
-                  : "/search/label/TV%20Show"; // Determine the link based on media_type
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      allCombinedCredits = data.cast; // Simpan semua data kombinasi ke variabel global
+      showMoreCredits(); // Tampilkan 5 data pertama
+    })
+    .catch((error) => console.error("Error fetching combined credits: ", error));
+}
 
-              const listItem = document.createElement("li");
-              listItem.classList.add("credit-item"); // Add class to the li
-              listItem.innerHTML = `
-          <a href="${href}" target="_blank"> <!-- Add the hyperlink to the credit-item -->
-            <img
-              src="${
-                credit.poster_path
-                  ? "https://image.tmdb.org/t/p/w185/" + credit.poster_path
-                  : "https://cintakuaja68.github.io/assets/img/no-cover.png"
-              }"
-              alt="${title}"
-              class="credit-poster"
-            />
-            <h3 class="credit-title">${title}</h3>
-            <p class="credit-media-type">${credit.media_type.toUpperCase()}</p>
-          </a>
-        `;
-              combinedCreditsList.appendChild(listItem);
-            });
-          })
-          .catch((error) =>
-            console.error("Error fetching combined credits: ", error)
-          );
-      }
+// Function to show more combined credits
+function showMoreCredits() {
+  const combinedCreditsList = document.getElementById("combinedCreditsForList");
+  combinedCreditsList.innerHTML = "";
+  combinedCreditsList.classList.add("credits-list"); // Add class to the ul
+
+  // Ambil 5 data pertama atau data yang masih tersedia jika kurang dari 5
+  const creditsToShow = allCombinedCredits.slice(0, initialLimit);
+
+  creditsToShow.forEach((credit) => {
+    const title = credit.title || credit.name;
+    const href =
+      credit.media_type === "movie"
+        ? "/search/label/Movie"
+        : "/search/label/TV%20Show";
+
+    const listItem = document.createElement("li");
+    listItem.classList.add("credit-item");
+    listItem.innerHTML = `
+      <a href="${href}" target="_blank">
+        <img
+          src="${
+            credit.poster_path
+              ? "https://image.tmdb.org/t/p/w185/" + credit.poster_path
+              : "https://cintakuaja68.github.io/assets/img/no-cover.png"
+          }"
+          alt="${title}"
+          class="credit-poster"
+        />
+        <h3 class="credit-title">${title}</h3>
+        <p class="credit-media-type">${credit.media_type.toUpperCase()}</p>
+      </a>
+    `;
+    combinedCreditsList.appendChild(listItem);
+  });
+
+  // Tampilkan tombol "Show More" jika ada lebih banyak data yang belum ditampilkan
+  if (initialLimit < allCombinedCredits.length) {
+    const showMoreButton = document.createElement("button");
+    showMoreButton.classList.add("show-more-button");
+    showMoreButton.textContent = "Show more related";
+    showMoreButton.addEventListener("click", toggleReadMore);
+    combinedCreditsList.appendChild(showMoreButton);
+  }
+}
+
+// Function to toggle "Show More" button and display more credits
+function toggleReadMore() {
+  initialLimit += 5; // Tambah batas tampilan dengan 5 data
+
+  // Tampilkan data tambahan jika masih ada data yang tersedia
+  if (initialLimit <= allCombinedCredits.length) {
+    showMoreCredits();
+  } else {
+    // Jika tidak ada data tambahan yang tersedia
+    initialLimit -= 5; // Set ulang batas tampilan ke jumlah awal (5 data)
+    showMoreCredits(); // Tampilkan data awal saja
+    const showMoreButton = document.querySelector(".show-more-button");
+    showMoreButton.textContent = "Less More"; // Ubah teks tombol menjadi "Less More"
+    showMoreButton.removeEventListener("click", toggleReadMore);
+    showMoreButton.addEventListener("click", toggleLessMore);
+  }
+}
+
+// Function to toggle "Less More" button and display less credits
+function toggleLessMore() {
+  initialLimit = 5; // Set ulang batas tampilan ke jumlah awal (5 data)
+  showMoreCredits(); // Tampilkan data awal saja
+  const showMoreButton = document.querySelector(".show-more-button");
+  showMoreButton.textContent = "Show more related"; // Ubah teks tombol menjadi "Show More"
+  showMoreButton.removeEventListener("click", toggleLessMore);
+  showMoreButton.addEventListener("click", toggleReadMore);
+}
 
       // Function to display person information
       function displayPersonInfo(person, personDetails) {
