@@ -182,13 +182,6 @@ button.btn-hide-results{
         position: relative;
       }
 
-      .imgPopular {
-        width: 105px;
-        height: 155px;
-        border-radius: 2px;
-        padding: 5px;
-      }
-
       .personName {
     width: 148px;
     font-size: 15px;
