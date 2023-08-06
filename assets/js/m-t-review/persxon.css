@@ -288,14 +288,14 @@ button.btn-hide-results{
       }
   
 /* CSS untuk .credits-list */
-.credits-list {
+.credits-list2 {
   width: 99%;
   list-style-type: none;
   padding: 18px 0;
   /* display: flex;
   overflow-x: auto;  */
 }
-credits-list2 {
+credits-list {
  width: 99%;
     display: flex;
     list-style-type: none;
