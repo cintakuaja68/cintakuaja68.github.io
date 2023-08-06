@@ -287,15 +287,15 @@ button.btn-hide-results{
     margin-bottom: 10px;
       }
   
-/* CSS untuk .credits-list */
+
 .credits-list2 {
-  width: 99%;
-  list-style-type: none;
-  padding: 18px 0;
-  /* display: flex;*/
-  /* overflow-x: auto;  */
+    width: 99%;
+    list-style-type: none !important;
+    padding: 18px 0 !important;
+    /* display: flex; */
+    /* overflow-x: auto; */
 }
-credits-list {
+.credits-list {
  width: 99%;
     display: flex;
     list-style-type: none;
