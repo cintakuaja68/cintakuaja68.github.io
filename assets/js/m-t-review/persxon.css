@@ -280,11 +280,11 @@ button.btn-hide-results{
         background-color: white;
         color: black;
       }
-      .credit-poster {
-        width: 150px;
-        height: 215px;
-        border-radius: 5px;
-        margin-bottom: 10px;
+   .credit-poster {
+    max-width: 150px !important;
+    height: 215px;
+    border-radius: 5px;
+    margin-bottom: 10px;
       }
   
 /* CSS untuk .credits-list */
@@ -330,23 +330,23 @@ credits-list {
 /* CSS untuk .credits-list END */
       .credit-item {
         position: relative;
-        display: inline-block;
-        margin: 10px;
+    display: inline-block;
+    margin: 10px !important;
       }
       .credit-title,
       .credit-media-type {
         width: 150px;
       }
       .credit-title {
-        position: absolute;
-        bottom: 2px;
-        color: white;
-        font-size: 13px;
-        font-weight: 500;
-        width: -webkit-fill-available;
-        padding: 7px 0;
-        border-radius: 2px;
-        text-align: center;
+        position: absolute !important;
+    bottom: 8px;
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    width: -webkit-fill-available !important;
+    padding: 7px 0 !important;
+    border-radius: 2px;
+    text-align: center !important;
         background: #000000;
         background: -webkit-repeating-linear-gradient(
           to top,
