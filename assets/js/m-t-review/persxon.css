@@ -292,8 +292,8 @@ button.btn-hide-results{
   width: 99%;
   list-style-type: none;
   padding: 18px 0;
-  /* display: flex;
-  overflow-x: auto;  */
+  /* display: flex;*/
+  /* overflow-x: auto;  */
 }
 credits-list {
  width: 99%;
@@ -331,7 +331,7 @@ credits-list {
       .credit-item {
         position: relative;
     display: inline-block;
-    margin: 10px !important;
+    margin: 5px !important;
       }
       .credit-title,
       .credit-media-type {
