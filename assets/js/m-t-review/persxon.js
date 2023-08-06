@@ -132,7 +132,7 @@ function showMoreCredits() {
           alt="${title}"
           class="credit-poster"
         />
-        <h3 class="credit-title">${title}</h3>
+        <p class="credit-title">${title}</p>
         <p class="credit-media-type">${credit.media_type.toUpperCase()}</p>
       </a>
     `;
@@ -691,7 +691,7 @@ tbody.appendChild(birthdayRow);
               : "https://cintakuaja68.github.io/assets/img/no-cover.png";
             poster.alt = credit.title || credit.original_name;
 
-            const title = document.createElement("h3");
+            const title = document.createElement("p");
             title.className = "credit-title";
             title.textContent = credit.title || credit.original_name;
 
