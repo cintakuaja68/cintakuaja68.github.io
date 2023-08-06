@@ -219,6 +219,7 @@ button.btn-hide-results{
         /* Set the width for larger screens (min-width: 768px) */
         .modal-dialog {
           max-width: 850px;
+         z-index: 1;
         }
       }
       .modal {
