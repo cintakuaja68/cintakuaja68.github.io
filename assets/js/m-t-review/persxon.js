@@ -485,7 +485,7 @@ function toggleLessMore() {
           const namaHeaderCell = document.createElement("th");
           namaHeaderCell.setAttribute("colspan", "3");
           const namaHeader = document.createElement("h2");
-          namaHeader.className = "title-head";
+          namaHeader.className = "title-head h2movieTv";
           namaHeader.textContent = personDetail.name;
 
           // Tambahkan Deathday jika tersedia
