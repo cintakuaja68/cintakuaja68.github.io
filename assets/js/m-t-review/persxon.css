@@ -269,7 +269,7 @@ button.btn-hide-results{
         color: black;
       }
    .credit-poster {
-    max-width: 150px !important;
+    width: 144px !important;
     height: 215px;
     border-radius: 5px;
     margin-bottom: 10px;
