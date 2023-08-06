@@ -107,7 +107,7 @@ function displayKnownFor(person) {
 function showMoreCredits() {
   const combinedCreditsList = document.getElementById("combinedCreditsForList");
   combinedCreditsList.innerHTML = "";
-  combinedCreditsList.classList.add("credits-list"); // Add class to the ul
+  combinedCreditsList.classList.add("credits-list2"); // Add class to the ul
 
   // Ambil 5 data pertama atau data yang masih tersedia jika kurang dari 5
   const creditsToShow = allCombinedCredits.slice(0, initialLimit);
