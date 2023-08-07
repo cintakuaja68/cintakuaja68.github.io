@@ -90,9 +90,9 @@ $(document).ready(function () {
               const movieTitle = movie.title;
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
-                <div class="movie-container col-md-3">
-                  <img class="poster1Img" src="${moviePoster}" alt="${movieTitle}">
-                  <div class="movie-title">${movieTitle}</div>
+                <div class="movie-container2 col-md-3">
+                  <img class="poster2Img" src="${moviePoster}" alt="${movieTitle}">
+                  <div class="movie-title2">${movieTitle}</div>
                 </div>
               `;
 
