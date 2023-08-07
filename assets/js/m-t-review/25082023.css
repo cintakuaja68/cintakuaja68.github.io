@@ -574,7 +574,7 @@ div.movie-container.col-md-3, div.tvshow-container.col-md-3 {
     bottom: 9px;
     width: 130px;
     /* top: 12px; */
-    background-image: linear-gradient(to bottom,transparent,rgb(4 12 62));
+    background-image: repeating-linear-gradient( to top, #060e24 0%, #10214cbf 50%, #00000000 100% );
     color: white;
     text-align: center;
     padding: 5px;
@@ -586,6 +586,14 @@ div.movie-container.col-md-3, div.tvshow-container.col-md-3 {
     /* word-break: break-word; */
     /* word-spacing: normal; */
     /* overflow: hidden; */
+}
+@media screen and (max-width: 768px){
+.movie-title, .tvshow-title {
+   bottom: 10px;
+    width: 95%;
+    line-height: 14px;
+    margin-left: 0px;
+}
 }
 @media screen and (min-width:640px){
 .col-md-4{flex: 0 0 auto;width: 33.33333333%;
