@@ -289,7 +289,7 @@ button.btn-hide-results{
  width: 99%;
     display: flex;
     list-style-type: none;
-    padding: 18px 0 !important;
+    padding: 0;
     overflow: overlay;
 }
 /* .credits-list::-webkit-scrollbar-thumb {
