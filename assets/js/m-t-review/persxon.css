@@ -327,9 +327,9 @@ button.btn-hide-results{
       .credit-media-type {
         width: 150px;
       }
-      .credit-title {
-        position: absolute !important;
-    bottom: 8px;
+   .credit-title {
+    position: absolute !important;
+    bottom: 13px;
     color: white !important;
     font-size: 13px !important;
     font-weight: 500 !important;
