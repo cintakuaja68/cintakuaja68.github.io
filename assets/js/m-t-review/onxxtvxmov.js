@@ -27,7 +27,7 @@ $(document).ready(function () {
         const ON_THE_AIR_TV_URL = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_KEY}`;
 
         // Lakukan permintaan AJAX ke API TMDB untuk film yang sedang diputar
-         $.ajax({
+        $.ajax({
           url: NOW_PLAYING_URL,
           method: "GET",
           dataType: "json",
@@ -44,8 +44,10 @@ $(document).ready(function () {
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
                 <div class="movie-container2 col-md-3">
+                  <a href="/search/label/Movie">
                   <img class="poster2Img" src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title2">${movieTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -61,8 +63,10 @@ $(document).ready(function () {
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
                 <div class="movie-container col-md-3">
+                  <a href="/p/now-playing-movies.html">
                   <img class="poster1Img" src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title">${movieTitle}</div>
+                  </a>
                 </div>
               `;
               $("#nowPlayingMoviesListLimited").append(movieContainer);
@@ -91,8 +95,10 @@ $(document).ready(function () {
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
                 <div class="movie-container2 col-md-3">
+                  <a href="/search/label/Movie">
                   <img class="poster2Img" src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title2">${movieTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -122,8 +128,10 @@ $(document).ready(function () {
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
                 <div class="tvshow-container2 col-md-3">
+                  <a href="/search/label/TV%20Show">
                   <img class="poster2Img" src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title2">${showTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -153,8 +161,10 @@ $(document).ready(function () {
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
                 <div class="movie-container2 col-md-3">
+                  <a href="/search/label/Movie">
                   <img class="poster2Img" src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title2">${movieTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -184,8 +194,10 @@ $(document).ready(function () {
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
                 <div class="tvshow-container2 col-md-3">
+                  <a href="/search/label/TV%20Show">
                   <img class="poster2Img" src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title2">${showTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -215,8 +227,10 @@ $(document).ready(function () {
               const moviePoster = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
               const movieContainer = `
                 <div class="movie-container2 col-md-3">
+                  <a href="/search/label/Movie">
                   <img class="poster2Img" src="${moviePoster}" alt="${movieTitle}">
                   <div class="movie-title2">${movieTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -246,8 +260,10 @@ $(document).ready(function () {
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
                 <div class="tvshow-container2 col-md-3">
+                  <a href="/search/label/TV%20Show">
                   <img class="poster2Img" src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title2">${showTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -277,8 +293,10 @@ $(document).ready(function () {
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
                 <div class="tvshow-container col-md-3">
+                  <a href="/p/airing-today-tv-shows.html">
                   <img class="poster1Img" src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title">${showTitle}</div>
+                  </a>
                 </div>
               `;
 
@@ -294,8 +312,10 @@ $(document).ready(function () {
               const showPoster = `https://image.tmdb.org/t/p/w200${show.poster_path}`;
               const showContainer = `
                 <div class="tvshow-container2 col-md-3">
+                  <a href="/search/label/TV%20Show">
                   <img class="poster2Img" src="${showPoster}" alt="${showTitle}">
                   <div class="tvshow-title2">${showTitle}</div>
+                  </a>
                 </div>
               `;
 
