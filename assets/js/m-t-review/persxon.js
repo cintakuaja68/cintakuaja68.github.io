@@ -516,7 +516,7 @@ const age = calculateAge(birthday);
 
 const birthdayRow = document.createElement("tr");
 const birthdayHeaderCell = document.createElement("th");
-birthdayHeaderCell.className = "detail-name";
+birthdayHeaderCell.className = "detail-name detailNameModal";
 birthdayHeaderCell.textContent = "Birthday";
 const birthdayValueCell = document.createElement("td");
 birthdayValueCell.className = "detail-isi";
@@ -531,7 +531,7 @@ tbody.appendChild(birthdayRow);
           // Baris Tempat Lahir
           const birthplaceRow = document.createElement("tr");
           const birthplaceHeaderCell = document.createElement("th");
-          birthplaceHeaderCell.className = "detail-name";
+          birthplaceHeaderCell.className = "detail-name detailNameModal";
           birthplaceHeaderCell.textContent = "Place of Birth";
           const birthplaceValueCell = document.createElement("td");
           birthplaceValueCell.className = "detail-isi";
@@ -546,7 +546,7 @@ tbody.appendChild(birthdayRow);
           // Baris Jenis Kelamin
           const genderRow = document.createElement("tr");
           const genderHeaderCell = document.createElement("th");
-          genderHeaderCell.className = "detail-name";
+          genderHeaderCell.className = "detail-name detailNameModal";
           genderHeaderCell.textContent = "Gender";
           const genderValueCell = document.createElement("td");
           genderValueCell.className = "detail-isi";
@@ -562,7 +562,7 @@ tbody.appendChild(birthdayRow);
           // Baris Departemen yang Dikenal
           const knownForDepartmentRow = document.createElement("tr");
           const knownForDepartmentHeaderCell = document.createElement("th");
-          knownForDepartmentHeaderCell.className = "detail-name";
+          knownForDepartmentHeaderCell.className = "detail-name detailNameModal";
           knownForDepartmentHeaderCell.textContent = "Job";
           const knownForDepartmentValueCell = document.createElement("td");
           knownForDepartmentValueCell.className = "detail-isi";
@@ -578,7 +578,7 @@ tbody.appendChild(birthdayRow);
           // Baris Popularity
           const popularityRow = document.createElement("tr");
           const popularityHeaderCell = document.createElement("th");
-          popularityHeaderCell.className = "detail-name";
+          popularityHeaderCell.className = "detail-name detailNameModal";
           popularityHeaderCell.textContent = "Popularity";
           const popularityValueCell = document.createElement("td");
           popularityValueCell.className = "detail-isi";
