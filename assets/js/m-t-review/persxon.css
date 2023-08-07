@@ -277,10 +277,10 @@ button.btn-hide-results{
   
 
 .credits-list2 {
-    width: 99%;
+    width: 100%;
     list-style-type: none !important;
     padding: 18px 0 !important;
-    /* display: flex; */
+    display: flex; 
     /* overflow-x: auto; */
 }
 .credits-list {
