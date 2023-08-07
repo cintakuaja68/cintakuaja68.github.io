@@ -289,34 +289,9 @@ th.detailNameModal{padding: 4px !important;}
  width: 99%;
     display: flex;
     list-style-type: none;
-    padding: 0;
+    padding: 18px 0 !important;
     overflow: overlay;
 }
-/* .credits-list::-webkit-scrollbar-thumb {
-  background-color: rgb(16, 89, 234) !important;
-  border-radius: 5px !important;
-}
-
-.credits-list::-webkit-scrollbar-thumb:hover {
-  background-color: #555; 
-}
-.credits-list::-webkit-scrollbar {
-  width: 10px; 
-  background-color: #f1f1f1; 
-}
-.credits-list::-webkit-scrollbar-track {
-  background-color: #f1f1f1; 
-}
-
-
-.credits-list::-webkit-scrollbar-button {
-  background-color: #777; 
-}
-
-.credits-list::-webkit-scrollbar-button:active {
-  background-color: #333;
-} */
-
 /* CSS untuk .credits-list END */
       .credit-item {
         position: relative;
