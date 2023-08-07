@@ -493,7 +493,7 @@ div.ytp-gradient-top {
     padding-top: 15px;
 }
 
-/* ON THE AIR */
+/* ON THE AIR HOME PAGE */
 #now-playing-movies .movie-item,
 #airing-today-tv .tv-item,
 #on-the-air-tv .tv-item {
@@ -568,5 +568,69 @@ div.movie-container.col-md-3, div.tvshow-container.col-md-3 {
     width: 92px;
 }
 }
+/* Gaya untuk overlay pada gambar in theater */
+   .movie-title, .tvshow-title {
+    position: absolute;
+    bottom: 9px;
+    width: 130px;
+    /* top: 12px; */
+    background-image: linear-gradient(to bottom,transparent,rgb(4 12 62));
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    /* display: contents; */
+    box-sizing: border-box;
+    /* height: 46px; */
+    /* word-break: break-word; */
+    /* word-spacing: normal; */
+    /* overflow: hidden; */
+}
+@media screen and (min-width:640px){
+.col-md-4{flex: 0 0 auto;width: 33.33333333%;
+  }
+.col-md-8{flex: 0 0 auto;width: 66.66666667%;
+ }
+}
 
+/* ON MOVIE TV */
+.movie-container,
+.tvshow-container {
+  position: relative;
+}
 
+.movie-container2, .tvshow-container2 {
+   position: relative;
+    width: 20%;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.poster2Img{
+width: 155px;
+    height: 220px;
+    border-radius: 2px;
+    padding: 0;
+}
+.tvshow-title2, .movie-title2{
+    width: 156px;
+    line-height: 18px;
+    font-size: 15px;
+    text-align: center;
+    position: absolute;
+    bottom: 5px;
+    color: aliceblue;
+    padding-top: 28px;
+    padding-bottom: 4px;
+    margin-left: 1px;
+    text-shadow: 0px -2px 20px black;
+    background: #000000;
+    background: -webkit-repeating-linear-gradient( to top, #121fcf 0%, #cf1512 100% );
+    background: -moz-repeating-linear-gradient( to top, #121fcf 0%, #cf1512 100% );
+    background: repeating-linear-gradient( to top, #000000 0%, #00000003 100% );
+}
+
+/* ON MOVIE TV END */
