@@ -198,7 +198,7 @@ button.btn-hide-results{
     background: -moz-repeating-linear-gradient( to top, #121fcf 0%, #cf1512 100% );
     background: repeating-linear-gradient( to top, #000000 0%, #00000003 100% );
 }
-.detailNameModal{padding: 4px;}
+th.detailNameModal{padding: 4px !important;}
       /* MODAL DETAIL */
       @media (min-width: 768px) {
         /* Set the width for larger screens (min-width: 768px) */
